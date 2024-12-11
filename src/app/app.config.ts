@@ -43,5 +43,4 @@ export const appConfig: ApplicationConfig = {
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
   ],
-
-}
+};
