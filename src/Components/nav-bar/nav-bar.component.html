@@ -1,0 +1,50 @@
+<div class="container">
+  <img
+    class="logo"
+    src="https://elearning.cis.asu.edu.eg/undergraduate/pluginfile.php/1/theme_moove/logo/1724506744/SF.png"
+    alt="#"
+  />
+  <div>
+    <ul class="links">
+      <li><a routerLink="/" [routerLinkActive]="'active-class'">Home</a></li>
+      <li><a routerLink="/Dashboard">Dashboard</a></li>
+      <li><a routerLink="/Courses">Courses</a></li>
+      <li><a routerLink="/Grades">Grades</a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="userInfoContainer">
+      <img
+        src="https://www.shutterstock.com/image-vector/user-profile-icon-vector-avatar-600nw-2220431045.jpg"
+        alt="profile"
+        class="userImg"
+      />
+      <h6 class="userName">username</h6>
+      <button
+        type="button"
+        class="expand_more_btn"
+        (click)="toogleExpandMore()"
+      >
+        <i class="material-icons">{{
+          expandMore ? "expand_less" : "expand_more"
+        }}</i>
+      </button>
+
+      <button class="menu" (click)="toggleMenu()">
+        <i class="material-icons">menu</i>
+      </button>
+    </div>
+  </div>
+</div>
+<ul *ngIf="expandMore" class="expand_menu">
+  <li><a routerLink="/Profile">Profile</a></li>
+  <hr />
+  <li><a>Logout</a></li>
+</ul>
+
+<ul *ngIf="showMenu" class="responsive_menu">
+  <li><a routerLink="/" [routerLinkActive]="'active-class'">Home</a></li>
+  <li><a routerLink="/Dashboard">Dashboard</a></li>
+  <li><a routerLink="/Courses">Courses</a></li>
+  <li><a routerLink="/Grades">Grades</a></li>
+</ul>
