@@ -11,5 +11,5 @@ import { CourseCardComponent } from '../Components/course-card/course-card.compo
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  title = 'E-Learning-Project';
+  title = 'e-learning-project';
 }
