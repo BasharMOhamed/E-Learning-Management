@@ -14,8 +14,8 @@ import { NavBarComponent } from '../Components/nav-bar/nav-bar.component';
     LoginComponent,
     ReactiveFormsModule,
     SignupComponent,
-    FirebaseAppModule,
-    NavBarComponent
+    // FirebaseAppModule,
+    NavBarComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
