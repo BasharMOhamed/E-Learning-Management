@@ -1,9 +1,9 @@
 .container {
-  height: 520px;
+  height: 500px;
   width: 520px;
   padding: 10px;
   border-radius: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   justify-content: center;
   display: flex;
   flex-direction: column;
@@ -12,16 +12,42 @@
 
 .material-hours {
   color: #d9d9d9;
-  font-size: 14;
+  font-size: 14px;
   align-items: center;
   justify-content: center;
   display: flex;
   gap: 3px;
+  align-self: flex-end;
+  margin-right: 10px;
 }
 
 img {
-  height: 320px;
+  height: 300px;
   width: 98%;
   border-radius: 10px;
   align-self: center;
+}
+
+.course-details {
+  display: flex;
+  flex-direction: column;
+  margin-left: 4%;
+}
+
+.course-title {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 3%;
+}
+
+.course-description {
+  font-size: 16px;
+  color: #696984;
+  margin-bottom: 2.2%;
+}
+
+.instructor-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: #4981bd;
 }
