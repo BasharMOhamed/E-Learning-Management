@@ -1,0 +1,62 @@
+<div
+  style="
+    background-color: #c1f0f7;
+    margin: 60px auto;
+    max-width: 600px;
+    height: 550px;
+    padding-top: 10px;
+  "
+>
+  <div class="form-container">
+    <h2>Submit Grade</h2>
+    <form>
+      <div class="form-group">
+        <label for="studentID">Student ID</label>
+        <input
+          id="studentID"
+          type="text"
+          [(ngModel)]="studentID"
+          name="studentID"
+          placeholder="202**"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="courseID">Course ID</label>
+        <input
+          id="courseID"
+          type="text"
+          [(ngModel)]="courseID"
+          name="courseID"
+          placeholder="HCI10"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="assessment">Assessment</label>
+        <input
+          id="assessment"
+          type="text"
+          [(ngModel)]="assessment"
+          name="assessment"
+          placeholder="MidTerm"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="grade">Grade</label>
+        <input
+          id="grade"
+          type="number"
+          [(ngModel)]="grade"
+          name="grade"
+          placeholder="12.5"
+          required
+        />
+      </div>
+      <button type="button" class="submit-button" (click)="submitForm()">
+        Submit
+      </button>
+    </form>
+  </div>
+</div>
