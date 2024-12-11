@@ -1,0 +1,8 @@
+{
+  "database": {
+    "rules": "database.rules.json"
+  },
+  "projects": {
+    "default": "e-learning-management-1a3c0"
+  }
+}
