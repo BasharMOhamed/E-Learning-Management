@@ -1,0 +1,27 @@
+.container {
+  height: 520px;
+  width: 520px;
+  padding: 10px;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  margin: 15px;
+}
+
+.material-hours {
+  color: #d9d9d9;
+  font-size: 14;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  gap: 3px;
+}
+
+img {
+  height: 320px;
+  width: 98%;
+  border-radius: 10px;
+  align-self: center;
+}
