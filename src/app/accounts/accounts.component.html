@@ -1,0 +1,41 @@
+<div class="base" style="background-color: lightgrey;border-radius: 12px;width: auto;height: auto;">
+<div class="container">
+  <div class="header">
+    <select [(ngModel)]="selectedType" class="dropdown">
+      <option value="students">Students</option>
+      <option value="instructors">Instructors</option>
+    </select>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let account of filteredAccounts; let i = index">
+        <td>{{ account.name }}</td>
+        <td>{{ account.status }}</td>
+        <td>
+          <button class="btn btn-danger action-btn" (click)="deleteAccount(i)">Delete</button>
+          <button
+            class="btn action-btn"
+            [ngClass]="{
+              'btn-success': account.status === 'In-Active',
+              'btn-warning': account.status === 'Active'
+            }"
+            (click)="toggleAccountStatus(i)">
+            {{ account.status === 'Active' ? 'Deactivate' : 'Activate' }}
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button class="btn add-button" (click)="navigateToAdd()">Add New Account</button>
+</div>
+</div>
+

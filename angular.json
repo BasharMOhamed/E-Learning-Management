@@ -55,10 +55,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "E-Learning-Project:build:production"
+              "buildTarget": "e-learning-project:build:production"
             },
             "development": {
-              "buildTarget": "E-Learning-Project:build:development"
+              "buildTarget": "e-learning-project:build:development"
             }
           },
           "defaultConfiguration": "development"
