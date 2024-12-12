@@ -137,5 +137,6 @@ hr {
     list-style-type: none;
     flex-direction: column;
     background-color: rgba(0, 0, 0, 0.07);
+    z-index: 1000;
   }
 }

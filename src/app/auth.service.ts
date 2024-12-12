@@ -8,7 +8,8 @@ import {
   signInWithEmailAndPassword,
   User,
 } from 'firebase/auth';
-import { from, Observable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
+import { catchError, from, Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,7 @@ import { from, Observable } from 'rxjs';
 export class AuthService {
   firebaseAuth = inject(Auth);
   firebaseDatabase = inject(Database);
-  constructor(private router: Router) {}
+  constructor(private router: Router, private toastr: ToastrService) {}
   register(
     username: string,
     email: string,
@@ -43,12 +44,7 @@ export class AuthService {
     return from(promise);
   }
 
-  login(email: string, password: string): Observable<void> {
-    const promise = signInWithEmailAndPassword(
-      this.firebaseAuth,
-      email,
-      password
-    ).then(() => {});
-    return from(promise);
+  login(email: string, password: string) {
+    return signInWithEmailAndPassword(this.firebaseAuth, email, password);
   }
 }

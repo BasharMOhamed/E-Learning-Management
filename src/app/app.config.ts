@@ -21,7 +21,14 @@ import Aura from '@primeng/themes/aura';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideAnimations(),
-    provideToastr(),
+    importProvidersFrom(
+      BrowserAnimationsModule, // Required for animations
+      ToastrModule.forRoot({
+        timeOut: 3000,
+        positionClass: 'toast-bottom-right',
+        preventDuplicates: true,
+      })
+    ),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideFirebaseApp(() =>

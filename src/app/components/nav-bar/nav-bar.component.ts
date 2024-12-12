@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../auth.service';
+import { getAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-nav-bar',
@@ -18,9 +19,10 @@ export class NavBarComponent {
   showMenu: boolean = false;
 
   ngOnInit() {
-    this.username =
-      this.auth.firebaseAuth.currentUser?.displayName?.split(' ')[0];
-    console.log(this.username);
+    const user = getAuth().currentUser;
+    if (user != null) {
+      this.username = user.displayName?.split(' ')[0];
+    }
   }
 
   logout() {

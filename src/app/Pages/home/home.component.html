@@ -2,36 +2,53 @@
   <div class="course-progress-container">
     <div class="header">
       <h2>Progress Learning</h2>
-      <h2>3 Courses</h2>
+      <h2>{{ notCompleted.length }} Courses</h2>
     </div>
-
-    <div class="course-progress">
+    <div *ngFor="let course of notCompleted">
+      <div (click)="navigateToCourse(course.ID)" class="course-progress">
+        <img src="plan-your-online-course.jpg" alt="Course Icon" />
+        <div class="course-info">
+          <h3>{{ course.name }}</h3>
+          <p class="instructor-name">{{ course.instructor }}</p>
+          <div class="progress-bar">
+            <div
+              class="progress-bar-fill"
+              [style.width.%]="course.progress"
+            ></div>
+          </div>
+          <p>{{ course.progress }}% Completed</p>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="course-progress">
       <img src="plan-your-online-course.jpg" alt="Course Icon" />
       <div class="course-info">
-        <h3>System Analysis and Design Course</h3>
-        <p class="instructor-name">Dr. Yasmin Afify</p>
+        <h3>System Analysis and Design</h3>
+        <p class="instructor-name">Yasmin Afify</p>
         <div class="progress-bar">
           <div class="progress-bar-fill" [style.width.%]="5"></div>
         </div>
         <p>5% Completed</p>
       </div>
-    </div>
+    </div> -->
   </div>
   <div class="course-completed-container"></div>
   <div class="header">
     <h2>Completed Courses</h2>
-    <h2>1 Courses</h2>
+    <h2>{{ Completed.length }} Courses</h2>
   </div>
 
-  <div class="course-progress completed">
-    <img src="plan-your-online-course.jpg" alt="Course Icon" />
-    <div class="course-info">
-      <h3 class="course-name">System Analysis and Design Course</h3>
-      <p class="instructor-name">Dr. Yasmin Afify</p>
-      <div class="progress-bar completed">
-        <div class="progress-bar-fill" style="width: 100%"></div>
+  <div *ngFor="let course of Completed">
+    <div class="course-progress completed">
+      <img src="plan-your-online-course.jpg" alt="Course Icon" />
+      <div class="course-info">
+        <h3 class="course-name">{{ course.name }}</h3>
+        <p class="instructor-name">{{ course.instructor }}</p>
+        <div class="progress-bar completed">
+          <div class="progress-bar-fill" style="width: 100%"></div>
+        </div>
+        <p>Completed</p>
       </div>
-      <p>Completed</p>
     </div>
   </div>
 </div>
