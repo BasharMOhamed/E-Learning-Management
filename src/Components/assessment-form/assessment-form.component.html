@@ -1,0 +1,117 @@
+<div class="container">
+    <div class="card">
+      <div class="card-header">
+        <h4>Human Computer Interaction</h4>
+      </div>
+      <div class="card-body">
+        <form formGroup="assessmentForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="assessment">Assessment</label>
+            <input
+              type="text"
+              id="assessment"
+              class="form-control"
+              formControlName="assessment"
+              placeholder="Enter Assessment"
+            />
+            <div
+              *ngIf="assessmentForm.get('assessment')?.invalid && assessmentForm.get('assessment')?.touched"
+              class="error-message"
+            >
+              Assessment is required.
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label for="assessmentFile">Assessment File / Link</label>
+            <input
+              type="text"
+              id="assessmentFile"
+              class="form-control"
+              formControlName="assessmentFile"
+              placeholder="Enter Assessment File / Link"
+            />
+            <div
+              *ngIf="assessmentForm.get('assessmentFile')?.invalid && assessmentForm.get('assessmentFile')?.touched"
+              class="error-message"
+            >
+              Assessment file is required.
+            </div>
+          </div>
+  
+          <div class="form-group row">
+            <div class="col">
+              <label for="startDate">Start Date / Time</label>
+              <input
+                type="datetime-local"
+                id="startDate"
+                class="form-control"
+                formControlName="startDate"
+              />
+              <div
+                *ngIf="assessmentForm.get('startDate')?.invalid && assessmentForm.get('startDate')?.touched"
+                class="error-message"
+              >
+                Start date is required.
+              </div>
+            </div>
+            <div class="col">
+              <label for="endDate">End Date / Time</label>
+              <input
+                type="datetime-local"
+                id="endDate"
+                class="form-control"
+                formControlName="endDate"
+              />
+              <div
+                *ngIf="assessmentForm.get('endDate')?.invalid && assessmentForm.get('endDate')?.touched"
+                class="error-message"
+              >
+                End date is required.
+              </div>
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label for="material">Material</label>
+            <input
+              type="text"
+              id="material"
+              class="form-control"
+              formControlName="material"
+              placeholder="Enter Material"
+            />
+            <div
+              *ngIf="assessmentForm.get('material')?.invalid && assessmentForm.get('material')?.touched"
+              class="error-message"
+            >
+              Material is required.
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label for="materialFile">Material File / Link</label>
+            <input
+              type="text"
+              id="materialFile"
+              class="form-control"
+              formControlName="materialFile"
+              placeholder="Enter Material File / Link"
+            />
+            <div
+              *ngIf="assessmentForm.get('materialFile')?.invalid && assessmentForm.get('materialFile')?.touched"
+              class="error-message"
+            >
+              Material file is required.
+            </div>
+          </div>
+           <div class="button">
+          <button type="submit" class ="btn btn-primary "(click)="navigateToCourseForm()"(click)="submitForm()">
+            Save
+          </button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

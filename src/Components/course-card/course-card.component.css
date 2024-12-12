@@ -49,5 +49,20 @@ img {
 .instructor-name {
   font-size: 12px;
   font-weight: 600;
-  color: #4981bd;
+  color: #49BBBD;
+}
+.edit-button {
+  margin-top: 12px;
+  background-color: #49BBBD;
+  color: white;
+  border: none;
+  border-radius: 40px;
+  padding: 6px 60px;
+  cursor: pointer;
+  align-self: flex-end;
+  font-size: medium;
+}
+
+.edit-button:hover {
+  background-color:#0056b3 ;
 }
