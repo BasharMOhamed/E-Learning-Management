@@ -5,20 +5,13 @@ import { SignupComponent } from './signup/signup.component';
 import { FirebaseAppModule } from '@angular/fire/app';
 
 import { RouterModule, RouterOutlet } from '@angular/router';
-import { StudentCoursesComponent } from '../Pages/student-courses/student-courses.component';
 import { CourseDetailsComponent } from '../Pages/course-details/course-details.component';
-import { StudentGradesComponent } from '../Pages/student-grades/student-grades.component';
 import { UserProfileComponent } from '../Pages/user-profile/user-profile.component';
 import { NavBarComponent } from '../Components/nav-bar/nav-bar.component';
-import { CourseCardComponent } from '../Components/course-card/course-card.component';
-import { CourseManagementComponent } from '../Components/course-management/course-management.component';
-import { AssessmentFormComponent } from '../Components/assessment-form/assessment-form.component';
-import { ToastrModule } from 'ngx-toastr';
 
-import { AssignStudentsComponent } from "./assign-students/assign-students.component";
-import { CourseManagementComponent } from "./course-management/course-management.component";
-import { CourseTableComponent } from "./course-table/course-table.component";
-
+import { AssignStudentsComponent } from './assign-students/assign-students.component';
+import { CourseManagementComponent } from './course-management/course-management.component';
+import { CourseTableComponent } from './course-table/course-table.component';
 
 @Component({
   selector: 'app-root',
@@ -33,8 +26,8 @@ import { CourseTableComponent } from "./course-table/course-table.component";
     CourseDetailsComponent,
     AssignStudentsComponent,
     CourseManagementComponent,
-    CourseTableComponent
-],
+    CourseTableComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

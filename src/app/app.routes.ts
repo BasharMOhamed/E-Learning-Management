@@ -7,8 +7,7 @@ import { StudentCoursesComponent } from '../Pages/student-courses/student-course
 import { CourseDetailsComponent } from '../Pages/course-details/course-details.component';
 import { UserProfileComponent } from '../Pages/user-profile/user-profile.component';
 import { AssessmentFormComponent } from '../Components/assessment-form/assessment-form.component';
-
-import { CourseManagementComponent } from './course-management/course-management.component';
+import { CourseManagementComponent } from '../Components/course-management/course-management.component';
 import { CourseTableComponent } from './course-table/course-table.component';
 
 export const routes: Routes = [
@@ -22,4 +21,5 @@ export const routes: Routes = [
   { path: '/course-table', component: CourseTableComponent },
   { path: 'edit/:id', component: CourseManagementComponent },
   { path: 'assessment-form', component: AssessmentFormComponent },
+  { path: 'course-management', component: CourseManagementComponent },
 ];
