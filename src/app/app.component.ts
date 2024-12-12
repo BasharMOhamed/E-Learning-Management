@@ -11,6 +11,9 @@ import { StudentGradesComponent } from '../Pages/student-grades/student-grades.c
 import { UserProfileComponent } from '../Pages/user-profile/user-profile.component';
 import { NavBarComponent } from '../Components/nav-bar/nav-bar.component';
 import { CourseCardComponent } from '../Components/course-card/course-card.component';
+import { CourseManagementComponent } from '../Components/course-management/course-management.component';
+import { AssessmentFormComponent } from '../Components/assessment-form/assessment-form.component';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AssignStudentsComponent } from "./assign-students/assign-students.component";
 import { CourseManagementComponent } from "./course-management/course-management.component";

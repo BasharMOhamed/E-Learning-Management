@@ -11,4 +11,5 @@
       <span class="instructor-name">{{ instructor }}</span>
     </div>
   </div>
+  <button *ngIf="editable" class="edit-button" (click)="onEdit()">Edit</button>
 </div>
