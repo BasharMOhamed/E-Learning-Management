@@ -1,15 +1,8 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
-import { HomeComponent } from './Pages/home/home.component';
+import { CourseManagementComponent } from '../Components/course-management/course-management.component';
+import { AssessmentFormComponent } from '../Components/assessment-form/assessment-form.component';
 
-export const routes: Routes = [
-  { path: 'auth', component: LoginComponent },
-  { path: 'register', component: SignupComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'logout', redirectTo: 'auth' },
-  { path: 'home', component: HomeComponent },
-  // { path: 'Dashboard' },
-  // { path: 'courses' },
-  // { path: 'grades' },
+
+export const routes: Routes = [{ path: 'course-management', component: CourseManagementComponent },
+    { path: 'assessment-form', component: AssessmentFormComponent }
 ];

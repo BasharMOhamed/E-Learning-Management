@@ -15,28 +15,11 @@ import { NavBarComponent } from '../Components/nav-bar/nav-bar.component';
 >>>>>>> 4ae4afb (add navbar component)
 =======
 import { CourseCardComponent } from '../Components/course-card/course-card.component';
->>>>>>> fde791e (add card)
 
 @Component({
   selector: 'app-root',
   standalone: true,
-<<<<<<< HEAD
-<<<<<<< HEAD
-  imports: [
-    RouterOutlet,
-    LoginComponent,
-    ReactiveFormsModule,
-    SignupComponent,
-    FirebaseAppModule,
-    NavBarComponent,
-    CommonModule,
-  ],
-=======
-  imports: [RouterOutlet, NavBarComponent],
->>>>>>> 4ae4afb (add navbar component)
-=======
   imports: [RouterOutlet, NavBarComponent, CourseCardComponent],
->>>>>>> fde791e (add card)
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
