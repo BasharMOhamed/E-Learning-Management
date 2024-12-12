@@ -11,11 +11,16 @@ import { AuthService } from './auth.service';
 import { getAuth } from '@angular/fire/auth';
 =======
 import { NavBarComponent } from '../Components/nav-bar/nav-bar.component';
+<<<<<<< HEAD
 >>>>>>> 4ae4afb (add navbar component)
+=======
+import { CourseCardComponent } from '../Components/course-card/course-card.component';
+>>>>>>> fde791e (add card)
 
 @Component({
   selector: 'app-root',
   standalone: true,
+<<<<<<< HEAD
 <<<<<<< HEAD
   imports: [
     RouterOutlet,
@@ -29,6 +34,9 @@ import { NavBarComponent } from '../Components/nav-bar/nav-bar.component';
 =======
   imports: [RouterOutlet, NavBarComponent],
 >>>>>>> 4ae4afb (add navbar component)
+=======
+  imports: [RouterOutlet, NavBarComponent, CourseCardComponent],
+>>>>>>> fde791e (add card)
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
