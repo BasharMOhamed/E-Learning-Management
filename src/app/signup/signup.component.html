@@ -1,0 +1,88 @@
+<div class="container">
+  <div class="image-container">
+    <img class="fcis-image" src="FCIS3.jpg" />
+  </div>
+  <div class="form-container">
+    <div class="switch">
+      <a routerLink="/auth">Login</a>
+      <a class="active">Register</a>
+    </div>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
+      <div class="input-container">
+        <label for="username">Username</label>
+        <input
+          id="username"
+          name="username"
+          type="text"
+          placeholder="Enter your username"
+          formControlName="username"
+        />
+        <span
+          *ngIf="
+            loginForm.get('username')?.invalid &&
+            (loginForm.get('username')?.dirty ||
+              loginForm.get('username')?.touched)
+          "
+          style="color: red; margin-top: 8px; margin-left: 4px"
+          >Invalid Username</span
+        >
+      </div>
+      <div class="input-container">
+        <label for="email">Email</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          placeholder="Enter your Email"
+          formControlName="email"
+        />
+        <span
+          *ngIf="
+            loginForm.get('email')?.invalid &&
+            (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)
+          "
+          style="color: red; margin-top: 8px; margin-left: 4px"
+          >Invalid Email</span
+        >
+      </div>
+      <div class="input-container">
+        <label for="ssn">SSN</label>
+        <input
+          id="ssn"
+          name="ssn"
+          type="text"
+          placeholder="Enter your SSN"
+          formControlName="ssn"
+        />
+        <span
+          *ngIf="
+            loginForm.get('ssn')?.invalid &&
+            (loginForm.get('ssn')?.dirty || loginForm.get('ssn')?.touched)
+          "
+          style="color: red; margin-top: 8px; margin-left: 4px"
+          >Invalid SSN</span
+        >
+      </div>
+      <div class="input-container">
+        <label for="password">Password</label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          placeholder="Enter your password"
+          formControlName="password"
+        />
+        <span
+          *ngIf="
+            loginForm.get('password')?.invalid &&
+            (loginForm.get('password')?.dirty ||
+              loginForm.get('password')?.touched)
+          "
+          style="color: red; margin-top: 8px; margin-left: 4px"
+          >Invalid Password</span
+        >
+      </div>
+      <button class="submit-btn" type="submit">Register</button>
+    </form>
+  </div>
+</div>
