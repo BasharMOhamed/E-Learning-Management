@@ -10,6 +10,7 @@ import { CourseManagementComponent } from './course-management/course-management
 import { CourseTableComponent } from './course-table/course-table.component';
 
 
+
 @Component({
   selector: 'app-root',
   standalone: true,
