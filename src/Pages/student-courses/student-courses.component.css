@@ -1,0 +1,59 @@
+.container {
+  padding-left: 2%;
+  padding-right: 2%;
+}
+
+.input-container {
+  position: relative;
+  width: 30%;
+  max-width: 300px;
+  align-self: center;
+  justify-self: center;
+  margin-top: 2%;
+}
+
+.input-container i {
+  position: absolute;
+  right: 7%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.input-container input {
+  width: 80%;
+  padding: 10px 10px 10px 40px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  border-radius: 20px;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.input-container input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.courses-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 10px;
+  margin-top: 2%;
+}
+
+a:visited,
+a:link {
+  text-decoration: none;
+  color: inherit;
+}
+
+@media (max-width: 850px) {
+  .input-container i {
+    display: none;
+  }
+
+  .input-container input {
+    width: 90%;
+  }
+}

@@ -1,0 +1,129 @@
+<div class="container">
+  <p class="nav-details">My Courses > Human Computer Interactions</p>
+  <ul class="filtering-list">
+    <li
+      (click)="filter('Lecture')"
+      [ngClass]="{'active':filterBy == 'Lecture', }"
+    >
+      Lectures
+    </li>
+    <li
+      (click)="filter('Readings')"
+      [ngClass]="{'active':filterBy == 'Readings', }"
+    >
+      Readings
+    </li>
+    <li
+      (click)="filter('MultiMedia')"
+      [ngClass]="{'active':filterBy == 'MultiMedia', }"
+    >
+      MultiMedia
+    </li>
+    <li
+      (click)="filter('Assignments')"
+      [ngClass]="{'active':filterBy == 'Assignments', }"
+    >
+      Assignments
+    </li>
+  </ul>
+  <div>
+    <div class="section" *ngIf="filterBy == 'Lecture'">
+      <p class="material-header">Lectures</p>
+      <div class="materials-container">
+        <div class="material">
+          <img src="/assets/lectures.png" class="img-style" />
+          <div class="material-details">
+            <span class="material-name">Lecture 1</span>
+            <span class="material-description">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </span>
+          </div>
+        </div>
+        <i class="material-icons" (click)="showSuccess()">file_download</i>
+      </div>
+      <div class="materials-container">
+        <div class="material">
+          <img src="/assets/lectures.png" class="img-style" />
+          <div class="material-details">
+            <span class="material-name">Lecture 2</span>
+            <span class="material-description">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </span>
+          </div>
+        </div>
+        <i class="material-icons" (click)="showSuccess()">file_download</i>
+      </div>
+    </div>
+    <div class="section" *ngIf="filterBy == 'MultiMedia'">
+      <p class="material-header">MultiMedia</p>
+      <div class="materials-container">
+        <div class="material">
+          <img src="/assets/multimedia.png" class="img-style" />
+          <div class="material-details">
+            <span class="material-name">Video 1</span>
+            <span class="material-description">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </span>
+          </div>
+        </div>
+        <i class="material-icons" (click)="openVideo()">play_circle_outline</i>
+      </div>
+      <div class="materials-container">
+        <div class="material">
+          <img src="/assets/multimedia.png" class="img-style" />
+          <div class="material-details">
+            <span class="material-name">Video 2</span>
+            <span class="material-description">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </span>
+          </div>
+        </div>
+        <i class="material-icons" (click)="openVideo()">play_circle_outline</i>
+      </div>
+    </div>
+    <div class="section" *ngIf="filterBy == 'Assignments'">
+      <p class="material-header">Assignments</p>
+      <div class="materials-container">
+        <div class="material">
+          <img src="/assets/assignments.png" class="img-style assignment-img" />
+          <div class="material-details">
+            <span class="material-name">Assignment 1</span>
+            <span class="material-description">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </span>
+          </div>
+          <span class="deadline">DeadLine: 20/12/2024</span>
+        </div>
+        <button class="">Solve</button>
+      </div>
+      <div class="materials-container">
+        <div class="material">
+          <img src="/assets/assignments.png" class="img-style assignment-img" />
+          <div class="material-details">
+            <span class="material-name">Assignment 2</span>
+            <span class="material-description">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </span>
+          </div>
+          <span class="deadline">DeadLine: 20/12/2024</span>
+        </div>
+        <i class="material-icons">check_circle_outline</i>
+      </div>
+    </div>
+    <div class="section" *ngIf="filterBy == 'Readings'">
+      <p class="material-header">Readings</p>
+      <div class="materials-container">
+        <div class="material">
+          <img src="/assets/Readings.png" class="book" />
+          <div class="material-details">
+            <span class="material-name">Book 1</span>
+            <span class="material-description">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </span>
+          </div>
+        </div>
+        <i class="material-icons" (click)="showSuccess()">file_download</i>
+      </div>
+    </div>
+  </div>
+</div>

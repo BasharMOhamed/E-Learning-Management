@@ -1,6 +1,8 @@
 .container {
-  height: 500px;
-  width: 520px;
+  height: 85%;
+  min-height: 460px;
+  width: 90%;
+  max-width: 520px;
   padding: 10px;
   border-radius: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
