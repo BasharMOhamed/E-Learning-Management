@@ -4,6 +4,7 @@ import { NavBarComponent } from '../Components/nav-bar/nav-bar.component';
 import { CourseCardComponent } from '../Components/course-card/course-card.component';
 
 
+
 @Component({
   selector: 'app-root',
   standalone: true,
