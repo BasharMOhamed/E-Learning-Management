@@ -11,12 +11,15 @@
 
   <h2>My Courses</h2>
   <div class="courses-container">
+    <p class="no-courses" *ngIf="courses.length == 0">
+      No Courses Assigned Yet!
+    </p>
     <span *ngFor="let course of filteredCourses">
-      <a [routerLink]="['courseDetails', course.id]">
+      <a [routerLink]="['/courseDetails', course.ID]">
         <app-course-card
           [instructor]="course.instructor"
           [hours]="course.hours"
-          [title]="course.title"
+          [title]="course.name"
           [description]="course.description"
         ></app-course-card>
       </a>

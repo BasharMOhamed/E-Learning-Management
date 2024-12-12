@@ -1,0 +1,25 @@
+.outer-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  width: 90%;
+  height: 90%;
+  align-self: center;
+  background-color: rgb(157, 204, 255, 0.2);
+}
+
+.inner-container {
+  background-color: white;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  height: 80%;
+}
+
+img {
+  height: 250px;
+  width: 250px;
+  border-radius: 15px;
+}

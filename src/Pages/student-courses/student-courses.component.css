@@ -14,7 +14,7 @@
 
 .input-container i {
   position: absolute;
-  right: 7%;
+  right: 24%;
   top: 50%;
   transform: translateY(-50%);
 }
@@ -46,6 +46,13 @@ a:visited,
 a:link {
   text-decoration: none;
   color: inherit;
+}
+
+.no-courses {
+  text-align: center;
+  margin-top: 10%;
+  font-size: 24px;
+  color: #ccc;
 }
 
 @media (max-width: 850px) {

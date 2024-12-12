@@ -12,15 +12,19 @@ import {
   BrowserAnimationsModule,
   provideAnimations,
 } from '@angular/platform-browser/animations';
-import { provideToastr, ToastrModule } from 'ngx-toastr';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { providePrimeNG } from 'primeng/config';
-import Aura from '@primeng/themes/aura';
+import { ToastrModule } from 'ngx-toastr';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideAnimations(),
-    provideToastr(),
+    importProvidersFrom(
+      BrowserAnimationsModule, // Required for animations
+      ToastrModule.forRoot({
+        timeOut: 3000,
+        positionClass: 'toast-bottom-right',
+        preventDuplicates: true,
+      })
+    ),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideFirebaseApp(() =>
@@ -39,18 +43,3 @@ export const appConfig: ApplicationConfig = {
     provideDatabase(() => getDatabase()),
   ],
 };
-// export const appConfig: ApplicationConfig = {
-//   providers: [
-//     provideZoneChangeDetection({ eventCoalescing: true }),
-//     provideRouter(routes),
-//     provideAnimationsAsync(),
-//     importProvidersFrom(
-//       BrowserAnimationsModule, // Required for animations
-//       ToastrModule.forRoot({
-//         timeOut: 3000,
-//         positionClass: 'toast-bottom-right',
-//         preventDuplicates: true,
-//       })
-//     ),
-//   ],
-// };

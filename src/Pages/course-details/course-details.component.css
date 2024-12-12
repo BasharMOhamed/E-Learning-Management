@@ -1,6 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
+  padding: 2%;
 }
 
 .nav-details {
@@ -11,12 +12,20 @@
   width: fit-content;
 }
 
+.no-courses {
+  text-align: center;
+  margin-top: 10%;
+  font-size: 24px;
+  color: #ccc;
+}
+
 .filtering-list {
   list-style-type: none;
   display: flex;
   gap: 3%;
   margin-left: 6%;
   width: fit-content;
+  margin-bottom: 2%;
 }
 
 .filtering-list li {
@@ -129,6 +138,7 @@ button {
   margin-right: 2%;
   font-size: 15px;
   font-weight: 500;
+  position: relative;
 }
 
 button:hover {

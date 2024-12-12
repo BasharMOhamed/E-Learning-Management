@@ -14,7 +14,12 @@ import { from, Observable } from 'rxjs';
 export class AuthService {
   firebaseAuth = inject(Auth);
   firebaseDatabase = inject(Database);
+  userId: String = '';
   constructor() {}
+
+  setUserId(userId: String) {
+    this.userId = userId;
+  }
   register(
     username: string,
     email: string,

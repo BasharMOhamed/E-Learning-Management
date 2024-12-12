@@ -1,5 +1,4 @@
-<app-nav-bar
-  ><li><a routerLink="/" [routerLinkActive]="'active-class'">Home</a></li>
+<app-nav-bar>
   <li>
     <a routerLink="/Dashboard" [routerLinkActive]="'active-class'">Dashboard</a>
   </li>
@@ -7,16 +6,8 @@
     <a routerLink="/Courses" [routerLinkActive]="'active-class'">Courses</a>
   </li>
   <li>
-    <a routerLink="/Assignments" [routerLinkActive]="'active-class'"
-      >Assignments</a
-    >
-  </li>
-  <li>
     <a routerLink="/Grades" [routerLinkActive]="'active-class'">Grades</a>
   </li></app-nav-bar
 >
-<router-outlet>
-  <!-- <app-student-courses></app-student-courses> -->
-  <!-- <app-course-details></app-course-details> -->
-  <app-student-grades></app-student-grades>
-</router-outlet>
+<app-user-profile></app-user-profile>
+<!-- <router-outlet> </router-outlet> -->

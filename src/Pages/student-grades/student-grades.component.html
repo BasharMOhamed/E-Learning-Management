@@ -3,7 +3,7 @@
     <h3>Grades</h3>
     <div class="academic-year">
       <label for="search">Academic Year: </label>
-      <select name="" id="search">
+      <select [(ngModel)]="academicYear" id="search" (change)="filter()">
         <option value="2021">2021</option>
         <option value="2022">2022</option>
         <option value="2023">2023</option>
@@ -11,72 +11,15 @@
       </select>
     </div>
   </div>
-  <div class="grades-container">
+  <div class="grades-container" *ngFor="let grade of filteredGrades">
     <div class="grade">
-      <p class="course-title">Human Computer Interactions</p>
-      <div class="results">
+      <p class="course-title">{{ grade.name }}</p>
+      <div class="results" *ngFor="let value of grade.grades | keyvalue">
         <ul class="quizes">
-          <li>Midterm:</li>
-          <li>Assignment 1:</li>
-          <li>Practical:</li>
-          <li>Final:</li>
+          <li>{{ value.key }}:</li>
         </ul>
         <ul class="numbers">
-          <li>13/15</li>
-          <li>13/15</li>
-          <li>13/15</li>
-          <li>45/50</li>
-        </ul>
-      </div>
-    </div>
-    <div class="grade">
-      <p class="course-title">Human Computer Interactions</p>
-      <div class="results">
-        <ul class="quizes">
-          <li>Midterm:</li>
-          <li>Assignment 1:</li>
-          <li>Practical:</li>
-          <li>Final:</li>
-        </ul>
-        <ul class="numbers">
-          <li>13/15</li>
-          <li>13/15</li>
-          <li>13/15</li>
-          <li>45/50</li>
-        </ul>
-      </div>
-    </div>
-    <div class="grade">
-      <p class="course-title">Human Computer Interactions</p>
-      <div class="results">
-        <ul class="quizes">
-          <li>Midterm:</li>
-          <li>Assignment 1:</li>
-          <li>Practical:</li>
-          <li>Final:</li>
-        </ul>
-        <ul class="numbers">
-          <li>13/15</li>
-          <li>13/15</li>
-          <li>13/15</li>
-          <li>45/50</li>
-        </ul>
-      </div>
-    </div>
-    <div class="grade">
-      <p class="course-title">Human Computer Interactions</p>
-      <div class="results">
-        <ul class="quizes">
-          <li>Midterm:</li>
-          <li>Assignment 1:</li>
-          <li>Practical:</li>
-          <li>Final:</li>
-        </ul>
-        <ul class="numbers">
-          <li>13/15</li>
-          <li>13/15</li>
-          <li>13/15</li>
-          <li>45/50</li>
+          <li>{{ value.value }}</li>
         </ul>
       </div>
     </div>

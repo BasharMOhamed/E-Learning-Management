@@ -8,21 +8,19 @@ import { RouterModule, RouterOutlet } from '@angular/router';
 import { StudentCoursesComponent } from '../Pages/student-courses/student-courses.component';
 import { CourseDetailsComponent } from '../Pages/course-details/course-details.component';
 import { StudentGradesComponent } from '../Pages/student-grades/student-grades.component';
+import { UserProfileComponent } from '../Pages/user-profile/user-profile.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     RouterOutlet,
-    LoginComponent,
     ReactiveFormsModule,
-    SignupComponent,
-    // FirebaseAppModule,
+    FirebaseAppModule,
     NavBarComponent,
-    StudentCoursesComponent,
     RouterModule,
+    UserProfileComponent,
     CourseDetailsComponent,
-    StudentGradesComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

@@ -39,6 +39,8 @@ export class LoginComponent {
       this.auth.login(email, password);
       console.log(this.auth.firebaseAuth.currentUser);
       console.log('Logged in successfully');
+      this.router.navigate(['Courses']);
+      this.auth.setUserId(this.auth.firebaseAuth.currentUser?.uid ?? '');
       form.reset();
     } else {
       console.log(form.get('email')?.errors);

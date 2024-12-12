@@ -1,129 +1,122 @@
 <div class="container">
-  <p class="nav-details">My Courses > Human Computer Interactions</p>
+  <p class="nav-details">My Courses > {{ courseName }}</p>
   <ul class="filtering-list">
     <li
       (click)="filter('Lecture')"
-      [ngClass]="{'active':filterBy == 'Lecture', }"
+      [ngClass]="{ active: filterBy == 'Lecture' }"
     >
       Lectures
     </li>
     <li
       (click)="filter('Readings')"
-      [ngClass]="{'active':filterBy == 'Readings', }"
+      [ngClass]="{ active: filterBy == 'Readings' }"
     >
       Readings
     </li>
     <li
       (click)="filter('MultiMedia')"
-      [ngClass]="{'active':filterBy == 'MultiMedia', }"
+      [ngClass]="{ active: filterBy == 'MultiMedia' }"
     >
       MultiMedia
     </li>
     <li
       (click)="filter('Assignments')"
-      [ngClass]="{'active':filterBy == 'Assignments', }"
+      [ngClass]="{ active: filterBy == 'Assignments' }"
     >
       Assignments
     </li>
   </ul>
-  <div>
-    <div class="section" *ngIf="filterBy == 'Lecture'">
-      <p class="material-header">Lectures</p>
+
+  <!-- Lectures Section -->
+  <div class="section" *ngIf="filterBy == 'Lecture'">
+    <p class="material-header">Lectures</p>
+    <p class="no-courses" *ngIf="lectures.length == 0">No Lectures Yet!</p>
+    <ng-container *ngFor="let lecture of lectures">
       <div class="materials-container">
         <div class="material">
           <img src="/assets/lectures.png" class="img-style" />
           <div class="material-details">
-            <span class="material-name">Lecture 1</span>
-            <span class="material-description">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </span>
+            <span class="material-name">{{ lecture.title }}</span>
+            <span class="material-description">{{ lecture.description }}</span>
           </div>
         </div>
         <i class="material-icons" (click)="showSuccess()">file_download</i>
       </div>
-      <div class="materials-container">
-        <div class="material">
-          <img src="/assets/lectures.png" class="img-style" />
-          <div class="material-details">
-            <span class="material-name">Lecture 2</span>
-            <span class="material-description">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </span>
-          </div>
-        </div>
-        <i class="material-icons" (click)="showSuccess()">file_download</i>
-      </div>
-    </div>
-    <div class="section" *ngIf="filterBy == 'MultiMedia'">
-      <p class="material-header">MultiMedia</p>
+    </ng-container>
+  </div>
+
+  <!-- MultiMedia Section -->
+  <div class="section" *ngIf="filterBy == 'MultiMedia'">
+    <p class="material-header">MultiMedia</p>
+    <p class="no-courses" *ngIf="multiMedia.length == 0">No MultiMedia Yet!</p>
+    <ng-container *ngFor="let media of multiMedia">
       <div class="materials-container">
         <div class="material">
           <img src="/assets/multimedia.png" class="img-style" />
           <div class="material-details">
-            <span class="material-name">Video 1</span>
-            <span class="material-description">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </span>
+            <span class="material-name">{{ media.title }}</span>
+            <span class="material-description">{{ media.description }}</span>
           </div>
         </div>
         <i class="material-icons" (click)="openVideo()">play_circle_outline</i>
       </div>
-      <div class="materials-container">
-        <div class="material">
-          <img src="/assets/multimedia.png" class="img-style" />
-          <div class="material-details">
-            <span class="material-name">Video 2</span>
-            <span class="material-description">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </span>
-          </div>
-        </div>
-        <i class="material-icons" (click)="openVideo()">play_circle_outline</i>
-      </div>
-    </div>
-    <div class="section" *ngIf="filterBy == 'Assignments'">
-      <p class="material-header">Assignments</p>
+    </ng-container>
+  </div>
+
+  <!-- Assignments Section -->
+  <div class="section" *ngIf="filterBy == 'Assignments'">
+    <p class="material-header">Assignments</p>
+    <p class="no-courses" *ngIf="assignments.length == 0">
+      No Assignments Yet!
+    </p>
+    <ng-container *ngFor="let assignment of assignments">
       <div class="materials-container">
         <div class="material">
           <img src="/assets/assignments.png" class="img-style assignment-img" />
           <div class="material-details">
-            <span class="material-name">Assignment 1</span>
+            <span class="material-name">{{ assignment.title }}</span>
             <span class="material-description">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              {{ assignment.description }}
             </span>
           </div>
-          <span class="deadline">DeadLine: 20/12/2024</span>
+          <span class="deadline">Deadline: {{ assignment.deadline }}</span>
         </div>
-        <button class="">Solve</button>
+        <button class="" *ngIf="!assignment.solved" (click)="solve(assignment)">
+          Solve
+          <input
+            type="file"
+            style="
+              width: 100%;
+              opacity: 0;
+              position: absolute;
+              width: 70px;
+              height: 70px;
+              right: 0px;
+            "
+          />
+        </button>
+        <i class="material-icons" *ngIf="assignment.solved"
+          >check_circle_outline</i
+        >
       </div>
-      <div class="materials-container">
-        <div class="material">
-          <img src="/assets/assignments.png" class="img-style assignment-img" />
-          <div class="material-details">
-            <span class="material-name">Assignment 2</span>
-            <span class="material-description">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </span>
-          </div>
-          <span class="deadline">DeadLine: 20/12/2024</span>
-        </div>
-        <i class="material-icons">check_circle_outline</i>
-      </div>
-    </div>
-    <div class="section" *ngIf="filterBy == 'Readings'">
-      <p class="material-header">Readings</p>
+    </ng-container>
+  </div>
+
+  <!-- Readings Section -->
+  <div class="section" *ngIf="filterBy == 'Readings'">
+    <p class="material-header">Readings</p>
+    <p class="no-courses" *ngIf="readings.length == 0">No Readings Yet!</p>
+    <ng-container *ngFor="let reading of readings">
       <div class="materials-container">
         <div class="material">
           <img src="/assets/Readings.png" class="book" />
           <div class="material-details">
-            <span class="material-name">Book 1</span>
-            <span class="material-description">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </span>
+            <span class="material-name">{{ reading.title }}</span>
+            <span class="material-description">{{ reading.description }}</span>
           </div>
         </div>
         <i class="material-icons" (click)="showSuccess()">file_download</i>
       </div>
-    </div>
+    </ng-container>
   </div>
 </div>
