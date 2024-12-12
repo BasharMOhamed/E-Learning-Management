@@ -1,0 +1,70 @@
+<div style="background-color: lightgrey;height: 100%;border-radius: 12px;">
+<div style="margin: 5%;" >
+<h1>Account Info</h1>
+</div>
+<div style="background-color: white;max-width: 90% 5%;margin: 5%;height: 80%;;border-radius: 12px;">
+<form #accountForm="ngForm" (ngSubmit)="submit(accountForm)" novalidate>
+
+  <div>
+    <label for="name">Name:</label>
+    <input
+      type="text"
+      id="name"
+      [(ngModel)]="account.name"
+      name="name"
+      required
+      #name="ngModel"
+      [class.invalid]="name.invalid "
+      placeholder="Enter name"
+    />
+
+    <span class="validation-message" *ngIf="name.invalid">
+      Name is required.
+    </span>
+  </div>
+
+
+  <div>
+    <label for="status">Status:</label>
+    <input
+      type="text"
+      id="status"
+      [(ngModel)]="account.status"
+      name="status"
+      required
+      #status="ngModel"
+      [class.invalid]="status.invalid "
+      placeholder="Enter status"
+    />
+
+    <span class="validation-message" *ngIf="status.invalid">
+      Level is required.
+    </span>
+  </div>
+
+  <div>
+    <label for="type">Type:</label>
+    <select
+      id="type"
+      [(ngModel)]="account.type"
+      name="type"
+      required
+      #type="ngModel"
+      [class.invalid]="type.invalid "
+    >
+      <option value="" disabled>Select a type</option>
+      <option value="students">Student</option>
+      <option value="instructors">Instructor</option>
+    </select>
+
+    <span class="validation-message" *ngIf="type.invalid">
+      Type is required.
+    </span>
+  </div>
+  <div class="button-container">
+    <button type="submit" [disabled]="accountForm.invalid">Submit</button>
+  </div>
+</form>
+</div>
+</div>
+

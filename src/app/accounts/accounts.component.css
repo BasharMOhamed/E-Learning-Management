@@ -1,0 +1,79 @@
+.container {
+  margin: 20px;
+  font-family: Arial, sans-serif;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+base{
+   width: auto;
+  height: auto;
+  /*padding: 10px;
+  box-sizing: border-box; */
+  /* overflow: visible; */
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  align-items: stretch;
+}
+
+.header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+
+}
+
+.dropdown {
+  padding: 8px;
+  font-size: 16px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border: black;
+  border-radius: 12px;
+}
+
+.table th,
+.table td {
+  border: 2px solid black;
+  border-radius: 12px;
+
+  padding: 10px;
+  text-align: center;
+}
+
+.add-button {
+  margin-top: 25px;
+  background-color: #49BBBD;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 12px;
+  display: inline-block;
+  width: 50%;
+
+}
+
+.action-btn {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 12px;
+  background-color: #49BBBD;
+  color: white;
+  margin: 10px;
+}
+
+.btn:hover {
+  opacity: 0.7;
+}
+

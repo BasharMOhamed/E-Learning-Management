@@ -9,6 +9,7 @@ import { AssignStudentsComponent } from './assign-students/assign-students.compo
 import { CourseManagementComponent } from './course-management/course-management.component';
 import { CourseTableComponent } from './course-table/course-table.component';
 
+
 @Component({
   selector: 'app-root',
   standalone: true,

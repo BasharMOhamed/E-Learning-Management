@@ -12,6 +12,8 @@ import { CourseTableComponent } from './course-table/course-table.component';
 import { GradingFormComponent } from './grading/grading.component';
 import { CourseCardComponent } from '../Components/course-card/course-card.component';
 import { DashboardComponent } from '../Components/dashboard/dashboard.component';
+import { AccountsComponent } from './accounts/accounts.component';
+import { AddAccountComponent } from './add-account/add-account.component';
 
 export const routes: Routes = [
   { path: 'auth', component: LoginComponent },
@@ -28,4 +30,6 @@ export const routes: Routes = [
   { path: 'grading', component: GradingFormComponent },
   { path: 'Home', component: DashboardComponent },
   { path: '', redirectTo: '/auth', pathMatch: 'full' },
+  { path: 'accounts', component: AccountsComponent },
+  { path: 'add-account', component: AddAccountComponent },
 ];
