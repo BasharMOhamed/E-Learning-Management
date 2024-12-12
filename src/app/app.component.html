@@ -1,4 +1,11 @@
-<div>
-  <h1>Welcome to {{ title }}</h1>
-  <app-grading-form></app-grading-form>
-</div>
+<app-nav-bar>
+  <li><a routerLink="/" routerLinkActive="active-class">Home</a></li>
+  <li>
+    <a routerLink="/" routerLinkActive="active-class">Course Management</a>
+  </li>
+  <li>
+    <a routerLink="grading" routerLinkActive="active-class">Grading</a>
+  </li>
+  <li><a routerLink="/" routerLinkActive="active-class">DashBoard</a></li>
+</app-nav-bar>
+<router-outlet> <app-grading-form></app-grading-form> </router-outlet>

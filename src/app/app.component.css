@@ -1,0 +1,8 @@
+a:visited,
+a:link {
+  color: inherit;
+}
+
+.active-class {
+  opacity: 0.5;
+}

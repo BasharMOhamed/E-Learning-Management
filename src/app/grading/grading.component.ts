@@ -3,11 +3,12 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { NavBarComponent } from '../../Components/nav-bar/nav-bar.component';
 
 @Component({
   selector: 'app-grading-form',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, NavBarComponent],
   templateUrl: './grading.component.html',
   styleUrls: ['./grading.component.css'],
 })
