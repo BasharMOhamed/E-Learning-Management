@@ -9,6 +9,8 @@ import { UserProfileComponent } from '../Pages/user-profile/user-profile.compone
 import { AssessmentFormComponent } from '../Components/assessment-form/assessment-form.component';
 import { CourseManagementComponent } from '../Components/course-management/course-management.component';
 import { CourseTableComponent } from './course-table/course-table.component';
+import { GradingFormComponent } from './grading/grading.component';
+import { CourseCardComponent } from '../Components/course-card/course-card.component';
 
 export const routes: Routes = [
   { path: 'auth', component: LoginComponent },
@@ -20,6 +22,8 @@ export const routes: Routes = [
   { path: 'Profile', component: UserProfileComponent },
   { path: '/course-table', component: CourseTableComponent },
   { path: 'edit/:id', component: CourseManagementComponent },
-  { path: 'assessment-form', component: AssessmentFormComponent },
   { path: 'course-management', component: CourseManagementComponent },
+  { path: 'assessment-form/:id', component: AssessmentFormComponent },
+  { path: '', redirectTo: '/auth', pathMatch: 'full' },
+  { path: 'grading', component: GradingFormComponent },
 ];
