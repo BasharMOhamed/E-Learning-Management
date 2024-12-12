@@ -1,10 +1,12 @@
 import { inject, Injectable } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { Database, getDatabase, ref, set } from '@angular/fire/database';
+import { Router } from '@angular/router';
 import {
   createUserWithEmailAndPassword,
   updateProfile,
   signInWithEmailAndPassword,
+  User,
 } from 'firebase/auth';
 import { from, Observable } from 'rxjs';
 
@@ -14,7 +16,7 @@ import { from, Observable } from 'rxjs';
 export class AuthService {
   firebaseAuth = inject(Auth);
   firebaseDatabase = inject(Database);
-  constructor() {}
+  constructor(private router: Router) {}
   register(
     username: string,
     email: string,
@@ -41,7 +43,12 @@ export class AuthService {
     return from(promise);
   }
 
-  login(email: string, password: string) {
-    return signInWithEmailAndPassword(this.firebaseAuth, email, password);
+  login(email: string, password: string): Observable<void> {
+    const promise = signInWithEmailAndPassword(
+      this.firebaseAuth,
+      email,
+      password
+    ).then(() => {});
+    return from(promise);
   }
 }

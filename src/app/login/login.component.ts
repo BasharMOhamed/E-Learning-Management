@@ -36,9 +36,12 @@ export class LoginComponent {
   onSubmit(form: FormGroup) {
     if (form.valid) {
       const { email, password } = form.value;
-      this.auth.login(email, password);
-      console.log(this.auth.firebaseAuth.currentUser);
-      console.log('Logged in successfully');
+      this.auth.login(email, password).subscribe({
+        next: () => {
+          this.router.navigateByUrl('/');
+        },
+      });
+
       form.reset();
     } else {
       console.log(form.get('email')?.errors);
