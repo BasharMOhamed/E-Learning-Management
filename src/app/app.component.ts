@@ -3,6 +3,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FirebaseAppModule } from '@angular/fire/app';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { NavBarComponent } from '../Components/nav-bar/nav-bar.component';
+import { GradingFormComponent } from '../Components/grading/grading.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +13,8 @@ import { NavBarComponent } from '../Components/nav-bar/nav-bar.component';
     RouterOutlet,
     ReactiveFormsModule,
     FirebaseAppModule,
+    GradingFormComponent,
+    ToastrModule,
     NavBarComponent,
     RouterModule,
   ],
