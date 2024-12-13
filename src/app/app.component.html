@@ -1,6 +1,8 @@
 <app-nav-bar>
   <li>
-    <a>accounts management</a>
+    <a routerLink="/course-management" [routerLinkActive]="'active-class'"
+      >Course Management</a
+    >
   </li>
   <li>
     <a routerLink="/" [routerLinkActive]="'active-class'">course management </a>
@@ -12,14 +14,5 @@
     </a>
   </li></app-nav-bar
 >
-
-<!-- <router-outlet> </router-outlet> -->
-
-<!-- <app-login></app-login> -->
-<!-- <app-signup></app-signup> -->
-<!-- <app-assign-students></app-assign-students> -->
-<!-- <app-course-management></app-course-management> -->
-<!-- <app-course-table></app-course-table> -->
-<!-- <router-outlet></router-outlet> -->
-
-<router-outlet></router-outlet>
+<!-- <app-user-profile></app-user-profile> -->
+<router-outlet> </router-outlet>

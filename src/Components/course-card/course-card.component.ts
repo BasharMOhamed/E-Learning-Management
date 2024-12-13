@@ -11,12 +11,11 @@ import { CommonModule } from '@angular/common';
 export class CourseCardComponent {
   @Input() title: string = '';
   @Input() description: string = '';
-  @Input() duration: string = '';
-  @Input() author: string = '';
+  @Input() hours: string = '';
+  @Input() instructor: string = '';
   @Input() image: string = '';
   @Input() editable: boolean = false;
   @Output() edit = new EventEmitter<void>();
-
   onEdit() {
     this.edit.emit();
   }

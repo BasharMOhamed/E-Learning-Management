@@ -3,50 +3,40 @@ import { CourseCardComponent } from '../course-card/course-card.component';
 import { CommonModule } from '@angular/common';
 import { AssessmentFormComponent } from '../assessment-form/assessment-form.component';
 import { Router } from '@angular/router';
+import { getDatabase, get, ref, child } from '@angular/fire/database';
+
 @Component({
   selector: 'app-course-management',
   standalone: true,
-  imports: [CourseCardComponent,CommonModule,AssessmentFormComponent],
+  imports: [CourseCardComponent, CommonModule, AssessmentFormComponent],
   templateUrl: './course-management.component.html',
-  styleUrl: './course-management.component.css'
+  styleUrl: './course-management.component.css',
 })
 export class CourseManagementComponent {
-  constructor(private router: Router) {}
-  navigateToAssessmentForm() {
-    this.router.navigate(['/assessment-form']);
-  }
-  courses = [
-    {
-      title: 'Human Computer Interaction',
-      description: 'Explore the design of interactive systems.',
-      duration: '3 Months',
-      author: 'Nivin Atef',
-      image: 'assets/hci.jpg',
-      editable: true,
-    },
-    {
-      title: 'Database and Management Systems',
-      description: 'Learn about modern database management.',
-      duration: '3 Months',
-      author: 'Nivin Atef',
-      image: 'assets/dbms.jpg',
-      editable: true,
-    },
-    {
-      title: 'Social Media Analytics',
-      description: 'Analyze data from social platforms.',
-      duration: '3 Months',
-      author: 'Nivin Atef',
-      image: 'assets/sma.jpg',
-      editable: true,
-    },
-  ];
+  dbRef = ref(getDatabase());
+  courses: any[] = [];
+  constructor(private router: Router) {
+    get(child(this.dbRef, `/courses`))
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          this.courses = Object.keys(snapshot.val()).map((key) => ({
+            id: key,
+            hours: snapshot.val()[key].hours.toString(),
+            title: snapshot.val()[key].name,
+            author: snapshot.val()[key].instructor,
+            description: snapshot.val()[key].description,
+            editable: true,
+          }));
+
+          console.log(this.courses);
+        } else {
+          console.log('none');
+        }
+      })
+      .catch((error) => console.log(error));
+  }
 
   editCourse(course: any) {
-   // alert(`Editing course: ${course.title}`);
-    this.navigateToAssessmentForm();
-    
+    this.router.navigate(['/assessment-form', course.id]);
   }
 }
-
-
