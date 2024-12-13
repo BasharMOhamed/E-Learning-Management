@@ -1,8 +1,4 @@
 import { Component } from '@angular/core';
-import { InputTextModule } from 'primeng/inputtext';
-import { ButtonModule } from 'primeng/button';
-import { TabViewModule } from 'primeng/tabview';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   FormBuilder,
   FormGroup,
@@ -12,6 +8,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../auth.service';
 import { Router, RouterModule } from '@angular/router';
+import { getDatabase, get, ref, child } from '@angular/fire/database';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +18,7 @@ import { Router, RouterModule } from '@angular/router';
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
+  dbRef = ref(getDatabase());
   loginForm!: FormGroup;
   constructor(
     private fb: FormBuilder,
@@ -33,13 +31,35 @@ export class LoginComponent {
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
+
+  getUserRole(userId: String) {
+    get(child(this.dbRef, `/users/${userId}`))
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          console.log(snapshot.val().role.toString());
+
+          const userRole = snapshot.val().role.toString();
+          console.log('role: ' + userRole);
+          if (userRole == 'instructor') {
+            this.router.navigate(['course-management']);
+          } else if (userRole == 'student') {
+            this.router.navigate(['Courses']);
+          }
+        } else {
+        }
+      })
+      .catch((error) => console.log(error));
+  }
+
   onSubmit(form: FormGroup) {
     if (form.valid) {
       const { email, password } = form.value;
       this.auth.login(email, password);
       console.log(this.auth.firebaseAuth.currentUser);
       console.log('Logged in successfully');
-      this.router.navigate(['Courses']);
+
+      this.getUserRole(this.auth.firebaseAuth.currentUser?.uid ?? '');
+
       this.auth.setUserId(this.auth.firebaseAuth.currentUser?.uid ?? '');
       form.reset();
     } else {

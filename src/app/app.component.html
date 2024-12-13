@@ -1,6 +1,8 @@
 <app-nav-bar>
   <li>
-    <a routerLink="/Dashboard" [routerLinkActive]="'active-class'">Dashboard</a>
+    <a routerLink="/course-management" [routerLinkActive]="'active-class'"
+      >Course Management</a
+    >
   </li>
   <li>
     <a routerLink="/Courses" [routerLinkActive]="'active-class'">Courses</a>
@@ -9,5 +11,5 @@
     <a routerLink="/Grades" [routerLinkActive]="'active-class'">Grades</a>
   </li></app-nav-bar
 >
-<app-user-profile></app-user-profile>
-<!-- <router-outlet> </router-outlet> -->
+<!-- <app-user-profile></app-user-profile> -->
+<router-outlet> </router-outlet>

@@ -56,7 +56,6 @@ export class StudentCoursesComponent implements OnInit {
       get(child(this.dbRef, coursesRef))
         .then((snapshot) => {
           if (snapshot.exists()) {
-            // Convert snapshot.val() to array of objects
             const dataArray = Object.keys(snapshot.val()).map((key) => ({
               id: key,
               ...snapshot.val()[key],
