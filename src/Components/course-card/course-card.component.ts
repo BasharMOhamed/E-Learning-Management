@@ -1,6 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+
+
 @Component({
   selector: 'app-course-card',
   standalone: true,
@@ -16,8 +18,9 @@ export class CourseCardComponent {
   @Input() image: string = '';
   @Input() editable: boolean = false;
   @Output() edit = new EventEmitter<void>();
-
+  //@Input() editable: boolean = false; 
   onEdit() {
     this.edit.emit();
   }
 }
+
