@@ -4,11 +4,6 @@ import { FirebaseAppModule } from '@angular/fire/app';
 
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { NavBarComponent } from '../Components/nav-bar/nav-bar.component';
-
-import { AssignStudentsComponent } from './assign-students/assign-students.component';
-import { CourseManagementComponent } from './course-management/course-management.component';
-import { CourseTableComponent } from './course-table/course-table.component';
-
 import { ToastrModule } from 'ngx-toastr';
 import { DashboardComponent } from '../Components/dashboard/dashboard.component';
 import { GradingFormComponent } from '../Components/grading/grading.component';
@@ -23,6 +18,7 @@ import { routes } from './app.routes';
     RouterOutlet,
     ReactiveFormsModule,
     FirebaseAppModule,
+    ToastrModule,
     NavBarComponent,
     RouterModule,
     DashboardComponent,
