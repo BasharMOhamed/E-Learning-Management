@@ -17,11 +17,23 @@ export class AddAccountComponent {
 
   submit(form: any) {
     if (form.valid) {
+      const newAccount = {
+        name: form.value.name,
+        type: form.value.type,
+        status: 'Active',
+      };
+
+      // Retrieve existing accounts from local storage
       const accounts = JSON.parse(localStorage.getItem('accounts') || '[]');
-      accounts.push(this.account);
+      accounts.push(newAccount);
+
+      // Save updated accounts to local storage
       localStorage.setItem('accounts', JSON.stringify(accounts));
-      this.router.navigate(['/']);
+
+      // Navigate to the accounts list page
+      this.router.navigate(['accounts']);
     }
   }
+
 }
 

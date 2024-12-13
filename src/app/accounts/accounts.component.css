@@ -27,12 +27,13 @@ base{
 }
 
 .dropdown {
-  padding: 8px;
+  padding: 15px;
   font-size: 16px;
 }
 
 .table {
-  width: 100%;
+  width: 95%;
+  margin: 3%;
   border-collapse: collapse;
   background-color: white;
   border: black;

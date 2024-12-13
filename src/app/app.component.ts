@@ -9,7 +9,12 @@ import { AssignStudentsComponent } from './assign-students/assign-students.compo
 import { CourseManagementComponent } from './course-management/course-management.component';
 import { CourseTableComponent } from './course-table/course-table.component';
 
-
+import { ToastrModule } from 'ngx-toastr';
+import { DashboardComponent } from '../Components/dashboard/dashboard.component';
+import { GradingFormComponent } from '../Components/grading/grading.component';
+import { AccountsComponent } from './accounts/accounts.component';
+import { routes } from './app.routes';
+//import { CourseCardComponent } from '../Components/course-card/course-card.component';
 
 @Component({
   selector: 'app-root',
