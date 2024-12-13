@@ -1,70 +1,92 @@
-<div style="background-color: lightgrey;height: 100%;border-radius: 12px;max-height: 75%;max-width: 80% 5%;margin: 5%;">
-<div style="margin: 5%;" >
-<h1>Account Info</h1>
+<div
+  style="
+    background-color: rgb(157, 204, 255, 0.23);
+    height: 75%;
+    border-radius: 12px;
+    width: 85%;
+    margin: auto;
+    display: flex;
+    margin-top: 3%;
+  "
+>
+  <!-- <div style="margin: 5%">
+  
+  </div> -->
+  <div
+    style="
+      padding: 10px;
+      background-color: white;
+      width: 85%;
+      margin: auto;
+      height: 85%;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-self: center;
+      gap: 2%;
+    "
+  >
+    <h1 style="margin-left: 2%">Account Info</h1>
+    <form #accountForm="ngForm" (ngSubmit)="submit(accountForm)" novalidate>
+      <div>
+        <label for="name">Name:</label>
+        <input
+          type="text"
+          id="name"
+          [(ngModel)]="account.name"
+          name="name"
+          required
+          #name="ngModel"
+          [class.invalid]="name.invalid"
+          placeholder="Enter name"
+        />
+
+        <span class="validation-message" *ngIf="name.invalid">
+          Name is required.
+        </span>
+      </div>
+
+      <div>
+        <label for="status">Status:</label>
+        <input
+          type="text"
+          id="status"
+          [(ngModel)]="account.status"
+          name="status"
+          required
+          #status="ngModel"
+          [class.invalid]="status.invalid"
+          placeholder="Enter status"
+        />
+
+        <span class="validation-message" *ngIf="status.invalid">
+          Level is required.
+        </span>
+      </div>
+
+      <div>
+        <label for="type">Type:</label>
+        <select
+          id="type"
+          [(ngModel)]="account.type"
+          name="type"
+          required
+          #type="ngModel"
+          [class.invalid]="type.invalid"
+        >
+          <option value="" disabled>Select a type</option>
+          <option value="students">Student</option>
+          <option value="instructors">Instructor</option>
+        </select>
+
+        <span class="validation-message" *ngIf="type.invalid">
+          Type is required.
+        </span>
+      </div>
+      <div class="button-container">
+        <button type="submit" [disabled]="accountForm.invalid">Submit</button>
+      </div>
+    </form>
+  </div>
 </div>
-<div style="background-color: white;max-width: 80% 5%;margin: 5%;height: 80%;;border-radius: 12px;max-height: 72%;">
-<form #accountForm="ngForm" (ngSubmit)="submit(accountForm)" novalidate>
-
-  <div>
-    <label for="name">Name:</label>
-    <input
-      type="text"
-      id="name"
-      [(ngModel)]="account.name"
-      name="name"
-      required
-      #name="ngModel"
-      [class.invalid]="name.invalid "
-      placeholder="Enter name"
-    />
-
-    <span class="validation-message" *ngIf="name.invalid">
-      Name is required.
-    </span>
-  </div>
-
-
-  <div>
-    <label for="status">Status:</label>
-    <input
-      type="text"
-      id="status"
-      [(ngModel)]="account.status"
-      name="status"
-      required
-      #status="ngModel"
-      [class.invalid]="status.invalid "
-      placeholder="Enter status"
-    />
-
-    <span class="validation-message" *ngIf="status.invalid">
-      Level is required.
-    </span>
-  </div>
-
-  <div>
-    <label for="type">Type:</label>
-    <select
-      id="type"
-      [(ngModel)]="account.type"
-      name="type"
-      required
-      #type="ngModel"
-      [class.invalid]="type.invalid "
-    >
-      <option value="" disabled>Select a type</option>
-      <option value="students">Student</option>
-      <option value="instructors">Instructor</option>
-    </select>
-
-    <span class="validation-message" *ngIf="type.invalid">
-      Type is required.
-    </span>
-  </div>
-  <div class="button-container">
-    <button type="submit" [disabled]="accountForm.invalid">Submit</button>
-  </div>
-</form>
-</div>
-</div>
-

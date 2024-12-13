@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+import { getDatabase, get, ref, child } from '@angular/fire/database';
 
 @Component({
   selector: 'app-accounts',
@@ -12,19 +12,39 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./accounts.component.css'],
 })
 export class AccountsComponent implements OnInit {
+  dbRef = ref(getDatabase());
   selectedType: string = 'students';
-  accounts: any[] = [
-    // Example data
-    { id: 1, name: 'Student 1', status: 'Active', type: 'students' },
-    { id: 2, name: 'Student 2', status: 'Active', type: 'students' },
-    { id: 3, name: 'Instructor 1', status: 'Active', type: 'instructors' },
-  ];
+  accounts: any[] = [];
 
   constructor(private router: Router) {}
 
   ngOnInit() {
-    const storedAccounts = JSON.parse(localStorage.getItem('accounts') || '[]');
-    this.accounts = storedAccounts.length ? storedAccounts : this.accounts;
+    this.getStudents();
+  }
+
+  getStudents() {
+    get(child(this.dbRef, '/users')).then((snapshot) => {
+      if (snapshot.exists()) {
+        Object.keys(snapshot.val()).forEach((key) => {
+          if (
+            snapshot.val()[key].role == 'student' ||
+            snapshot.val()[key].role == 'instructor'
+          ) {
+            this.accounts.push({
+              id: snapshot.val()[key].username,
+              courses: Object.entries(snapshot.val()[key].Courses || {}).map(
+                ([courseId, courseData]: [string, any]) => ({
+                  name: courseData.name,
+                  progress: courseData.progress.toString(),
+                })
+              ),
+            });
+          }
+        });
+      } else {
+        console.log('none');
+      }
+    });
   }
 
   get filteredAccounts() {
@@ -56,8 +76,4 @@ export class AccountsComponent implements OnInit {
   navigateToAdd() {
     this.router.navigate(['/add-account']);
   }
-
-
 }
-
-
