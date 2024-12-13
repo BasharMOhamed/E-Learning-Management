@@ -29,8 +29,6 @@ export const routes: Routes = [
   { path: 'assessment-form/:id', component: AssessmentFormComponent },
   { path: 'grading', component: GradingFormComponent },
   { path: 'Home', component: DashboardComponent },
-
   { path: 'accounts', component: AccountsComponent },
-  { path: 'add-account', component: AddAccountComponent },
   { path: '', redirectTo: '/auth', pathMatch: 'full' },
 ];

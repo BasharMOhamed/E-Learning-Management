@@ -13,8 +13,8 @@
   <div class="container">
     <div class="header">
       <select [(ngModel)]="selectedType" class="dropdown">
-        <option value="students">Students</option>
-        <option value="instructors">Instructors</option>
+        <option value="student">Student</option>
+        <option value="instructor">Instructor</option>
       </select>
     </div>
 
@@ -51,9 +51,5 @@
         </tr>
       </tbody>
     </table>
-
-    <button class="btn add-button" (click)="navigateToAdd()">
-      Add New Account
-    </button>
   </div>
 </div>
