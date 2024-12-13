@@ -18,6 +18,8 @@ import { CourseTableComponent } from './course-table/course-table.component';
     FirebaseAppModule,
     NavBarComponent,
     RouterModule,
+    DashboardComponent,
+    GradingFormComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

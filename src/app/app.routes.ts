@@ -25,7 +25,7 @@ export const routes: Routes = [
   { path: 'edit/:id', component: CourseManagementComponent },
   { path: 'course-management', component: CourseManagementComponent },
   { path: 'assessment-form/:id', component: AssessmentFormComponent },
-  { path: '', redirectTo: '/auth', pathMatch: 'full' },
   { path: 'grading', component: GradingFormComponent },
   { path: 'Home', component: DashboardComponent },
+  { path: '', redirectTo: '/auth', pathMatch: 'full' },
 ];

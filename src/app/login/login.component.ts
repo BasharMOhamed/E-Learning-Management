@@ -41,7 +41,7 @@ export class LoginComponent {
           const userRole = snapshot.val().role.toString();
           console.log('role: ' + userRole);
           if (userRole == 'instructor') {
-            this.router.navigate(['course-management']);
+            this.router.navigate(['Home']);
           } else if (userRole == 'student') {
             this.router.navigate(['Courses']);
           }

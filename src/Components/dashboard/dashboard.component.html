@@ -1,37 +1,45 @@
 <main class="main-content">
-  <!-- Filter Section -->
-  <div class="filter-section">
+  <div class="top-container">
     <h2 style="margin-bottom: 70px">Students Progress</h2>
-    <!-- Summary Section -->
-    <aside class="summary">
-      <h3>Total Students:</h3>
-      <p>80 students</p>
-      <p>In Progress: 50</p>
-      <p>Completed: 30</p>
-    </aside>
     <select [(ngModel)]="selectedCourse" (change)="filterByCourse()">
-      <option *ngFor="let course of courses" [value]="course">
-        {{ course }}
+      <option *ngFor="let course of courses" [value]="course.name">
+        {{ course.name }}
       </option>
     </select>
   </div>
-
-  <!-- Students Progress Section -->
-  <div class="students-progress">
-    <div class="progress-row" *ngFor="let student of filteredStudents">
-      <div class="progress-icon">
-        <img src="assets/student-icon.png" alt="Student Icon" />
-      </div>
-      <div class="progress-info">
-        <h4>{{ student.id }}</h4>
-        <p>{{ student.progress }}% Completed</p>
-        <div class="progress-bar">
-          <div
-            class="progress"
-            [style.width.%]="student.progress"
-            [class.completed]="student.progress === 100"
-          ></div>
-        </div>
+  <!-- Filter Section -->
+  <div class="container">
+    <!-- Students Progress Section -->
+    <div class="students-progress">
+      <ng-container *ngFor="let student of filteredStudents">
+        <ng-container *ngIf="student.courses.length >= 1">
+          <div class="progress-row" *ngFor="let course of student.courses">
+            <div class="progress-icon">
+              <img
+                src="assets/plan-your-online-course.png"
+                alt="Student Icon"
+              />
+            </div>
+            <div class="progress-info">
+              <h4>{{ student.id }}</h4>
+              <p>{{ course.progress }}% Completed</p>
+              <div class="progress-bar">
+                <div
+                  class="progress"
+                  [style.width.%]="course.progress"
+                  [class.completed]="course.progress === 100"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+    <div class="filter-section">
+      <!-- Summary Section -->
+      <div class="summary">
+        <h3>Total Students:</h3>
+        <p>{{ students.length }} students</p>
       </div>
     </div>
   </div>
