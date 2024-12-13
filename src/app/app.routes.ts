@@ -8,7 +8,6 @@ import { StudentCoursesComponent } from '../Pages/student-courses/student-course
 import { CourseDetailsComponent } from '../Pages/course-details/course-details.component';
 import { UserProfileComponent } from '../Pages/user-profile/user-profile.component';
 import { GradingFormComponent } from '../Components/grading/grading.component';
-import { CourseCardComponent } from '../Components/course-card/course-card.component';
 import { DashboardComponent } from '../Components/dashboard/dashboard.component';
 
 export const routes: Routes = [
@@ -20,7 +19,7 @@ export const routes: Routes = [
   { path: 'Profile', component: UserProfileComponent },
   { path: 'course-management', component: CourseManagementComponent },
   { path: 'assessment-form/:id', component: AssessmentFormComponent },
-  { path: '', redirectTo: '/auth', pathMatch: 'full' },
   { path: 'grading', component: GradingFormComponent },
   { path: 'Home', component: DashboardComponent },
+  { path: '', redirectTo: '/auth', pathMatch: 'full' },
 ];

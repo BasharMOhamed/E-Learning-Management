@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { getDatabase, get, ref, child } from '@angular/fire/database';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,34 +10,65 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./dashboard.component.css'],
   imports: [FormsModule, CommonModule],
 })
-export class DashboardComponent {
-  courses = [
-    'All Students',
-    'Human Computer Interaction',
-    'Web Development',
-    'Data Science',
-  ];
+export class DashboardComponent implements OnInit {
+  dbRef = ref(getDatabase());
+  courses: any[] = [];
+  selectedCourse = 'All Students';
+  students: any[] = [];
+  filteredStudents: any[] = [];
 
-  students = [
-    { id: 'Student 1', progress: 5, course: 'Human Computer Interaction' },
-    { id: 'Student 2', progress: 15, course: 'Human Computer Interaction' },
-    { id: 'Student 3', progress: 100, course: 'Web Development' },
-    { id: 'Student 4', progress: 50, course: 'Data Science' },
-    // Add more student data
-  ];
+  ngOnInit(): void {
+    this.getCourses();
+    this.getStudents();
+  }
 
-  filteredStudents = this.students; // Initially show all students
-  selectedCourse = 'All Students'; // Default selection
+  getCourses() {
+    get(child(this.dbRef, '/courses')).then((snapshot) => {
+      if (snapshot.exists()) {
+        this.courses = Object.keys(snapshot.val()).map((key) => ({
+          id: key,
+          name: snapshot.val()[key].name,
+        }));
+        this.courses.push({ id: 'all', name: this.selectedCourse });
+      } else {
+        console.log('none');
+      }
+    });
+  }
+
+  getStudents() {
+    get(child(this.dbRef, '/users')).then((snapshot) => {
+      if (snapshot.exists()) {
+        Object.keys(snapshot.val()).forEach((key) => {
+          if (snapshot.val()[key].role == 'student') {
+            this.students.push({
+              id: snapshot.val()[key].username,
+              courses: Object.entries(snapshot.val()[key].Courses || {}).map(
+                ([courseId, courseData]: [string, any]) => ({
+                  name: courseData.name,
+                  progress: courseData.progress.toString(),
+                })
+              ),
+            });
+          }
+        });
+        this.filteredStudents = this.students;
+      } else {
+        console.log('none');
+      }
+    });
+  }
 
   filterByCourse() {
     if (this.selectedCourse === 'All Students') {
-      // Show all students if "All Students" is selected
       this.filteredStudents = this.students;
     } else {
-      // Filter based on the selected course
-      this.filteredStudents = this.students.filter(
-        (student) => student.course === this.selectedCourse
-      );
+      this.filteredStudents = this.students.filter((student) => {
+        for (let i = 0; i < student.courses.length; i++) {
+          student.courses[i] == this.selectedCourse;
+          return student;
+        }
+      });
     }
   }
 }

@@ -1,20 +1,40 @@
-.filter-section {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.main-content {
+  padding: 2%;
 }
 
-.filter-section select {
+.top-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 1%;
+}
+
+select {
   padding: 0.5rem;
   font-size: 1rem;
   margin-bottom: 70px;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.container {
+  display: flex;
+  gap: 2%;
+}
+
+.filter-section {
+  display: flex;
+  justify-content: space-evenly;
+
+  height: 120px;
 }
 
 /* Students Progress Section */
 .students-progress {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 20px;
+  width: 80%;
 }
 
 .progress-row {
@@ -22,18 +42,22 @@
   align-items: center;
   background: #f9f9f9;
   padding: 0.5rem;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.332);
+  min-height: 30%;
 }
 
 .progress-icon img {
-  width: 50px;
-  height: 50px;
-  margin-right: 1rem;
+  width: 100px;
+  height: 70px;
+  margin-right: 1.5rem;
 }
 
 .progress-info {
   flex: 1;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
 }
 
 .progress-bar {
@@ -60,6 +84,14 @@
   padding: 1rem;
   text-align: center;
   border-radius: 5px;
+  justify-content: space-evenly;
+  display: flex;
+  flex-direction: column;
+}
+
+.summary h3 {
+  color: #4981bd;
+  font-size: 24px;
 }
 
 /* Responsive Design */

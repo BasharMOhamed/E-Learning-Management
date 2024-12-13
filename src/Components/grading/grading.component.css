@@ -5,16 +5,16 @@
 
 /* Center the form on the page using Flexbox */
 .form-container {
-  max-width: 500px;
-  margin: 50px auto;
   padding: 20px;
-  background-color: #f8f9fa; /* Light grey background */
+  background-color: white; /* Light grey background */
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column; /* Stack items vertically */
-  justify-content: center; /* Center items vertically inside container */
-  align-items: center; /* Center items horizontally */
+  gap: 2%;
+  margin: auto; /* Reduce margin for smaller screens */
+  width: 92%;
+  height: 90%; /* Center items horizontally */
 }
 
 /* Style the form elements */
@@ -32,7 +32,7 @@ label {
 
 input {
   width: 90%; /* Slight margin for a balanced layout */
-  padding: 10px;
+  padding: 6px;
   font-size: 16px;
   border: 1px solid #ced4da;
   border-radius: 4px;
@@ -46,11 +46,17 @@ input:focus {
   box-shadow: 0 0 5px rgba(128, 189, 255, 0.5);
 }
 
+form {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
 .submit-button {
   align-self: center; /* Center the button */
-  width: 95%; /* Slight margin for alignment */
+  width: 20%; /* Slight margin for alignment */
   padding: 10px;
-  background-color: #17a2b8;
+  background-color: #49bbbd;
   color: white;
   font-size: 16px;
   border: none;
@@ -83,20 +89,6 @@ input:focus {
   border-radius: 5px;
   padding: 10px;
   font-size: 14px;
-}
-.form-container {
-  margin: 20px; /* Reduce margin for smaller screens */
-  padding: 15px; /* Adjust padding for smaller screens */
-}
-
-input {
-  font-size: 14px; /* Reduce font size for smaller screens */
-  padding: 8px; /* Adjust padding for smaller screens */
-}
-
-.submit-button {
-  font-size: 14px; /* Reduce font size for smaller screens */
-  padding: 8px; /* Adjust padding for smaller screens */
 }
 
 .feedback {

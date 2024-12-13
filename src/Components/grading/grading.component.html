@@ -1,34 +1,38 @@
 <div
   style="
-    background-color: #c1f0f7;
+    background-color: rgba(157, 204, 255, 0.596);
     margin: 60px auto;
-    max-width: 600px;
-    height: 510px;
+    max-width: 85%;
+    height: 520px;
     padding-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
   "
 >
   <div class="form-container">
     <h2>Submit Grade</h2>
     <form>
       <div class="form-group">
-        <label for="studentID">Student ID</label>
+        <label for="studentID">Student Name</label>
         <input
-          id="studentID"
+          id="studentName"
           type="text"
-          [(ngModel)]="studentID"
-          name="studentID"
-          placeholder="202**"
+          [(ngModel)]="studentName"
+          name="studentName"
+          placeholder="user****"
           required
         />
       </div>
       <div class="form-group">
-        <label for="courseID">Course ID</label>
+        <label for="courseID">Course Name</label>
         <input
-          id="courseID"
+          id="courseName"
           type="text"
-          [(ngModel)]="courseID"
-          name="courseID"
-          placeholder="HCI10"
+          [(ngModel)]="courseName"
+          name="courseName"
+          placeholder="course**"
           required
         />
       </div>
