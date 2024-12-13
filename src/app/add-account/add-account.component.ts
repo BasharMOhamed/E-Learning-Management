@@ -34,4 +34,5 @@ export class AddAccountComponent {
       this.router.navigate(['accounts']);
     }
   }
+
 }

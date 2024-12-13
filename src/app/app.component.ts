@@ -16,8 +16,6 @@ import { AccountsComponent } from './accounts/accounts.component';
 import { routes } from './app.routes';
 //import { CourseCardComponent } from '../Components/course-card/course-card.component';
 
-
-
 @Component({
   selector: 'app-root',
   standalone: true,
