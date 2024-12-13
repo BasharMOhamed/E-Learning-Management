@@ -11,6 +11,7 @@ import { CourseManagementComponent } from '../Components/course-management/cours
 import { CourseTableComponent } from './course-table/course-table.component';
 import { GradingFormComponent } from './grading/grading.component';
 import { CourseCardComponent } from '../Components/course-card/course-card.component';
+import { DashboardComponent } from '../Components/dashboard/dashboard.component';
 
 export const routes: Routes = [
   { path: 'auth', component: LoginComponent },
@@ -26,4 +27,5 @@ export const routes: Routes = [
   { path: 'assessment-form/:id', component: AssessmentFormComponent },
   { path: '', redirectTo: '/auth', pathMatch: 'full' },
   { path: 'grading', component: GradingFormComponent },
+  { path: 'Home', component: DashboardComponent },
 ];

@@ -3,8 +3,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FirebaseAppModule } from '@angular/fire/app';
 
 import { RouterModule, RouterOutlet } from '@angular/router';
-import { CourseDetailsComponent } from '../Pages/course-details/course-details.component';
-import { UserProfileComponent } from '../Pages/user-profile/user-profile.component';
 import { NavBarComponent } from '../Components/nav-bar/nav-bar.component';
 
 import { AssignStudentsComponent } from './assign-students/assign-students.component';
