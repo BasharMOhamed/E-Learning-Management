@@ -3,13 +3,12 @@
   font-family: Arial, sans-serif;
   align-items: center;
   justify-content: center;
-  height: 100vh;
   margin-bottom: 20px;
   text-align: center;
 }
 
-base{
-   width: auto;
+base {
+  width: auto;
   height: auto;
   /*padding: 10px;
   box-sizing: border-box; */
@@ -23,12 +22,14 @@ base{
   display: flex;
   justify-content: flex-end;
   margin-bottom: 10px;
-
 }
 
 .dropdown {
   padding: 15px;
   font-size: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  border: none;
+  border-radius: 10px;
 }
 
 .table {
@@ -51,7 +52,7 @@ base{
 
 .add-button {
   margin-top: 25px;
-  background-color: #49BBBD;
+  background-color: #49bbbd;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -59,7 +60,6 @@ base{
   border-radius: 12px;
   display: inline-block;
   width: 50%;
-
 }
 
 .action-btn {
@@ -69,7 +69,7 @@ base{
   font-size: 14px;
   font-weight: bold;
   border-radius: 12px;
-  background-color: #49BBBD;
+  background-color: #49bbbd;
   color: white;
   margin: 10px;
 }
@@ -77,4 +77,3 @@ base{
 .btn:hover {
   opacity: 0.7;
 }
-

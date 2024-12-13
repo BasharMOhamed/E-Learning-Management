@@ -1,41 +1,59 @@
-<div class="base" style="background-color: lightgrey;border-radius: 12px;width: auto;height: fit-content;">
-<div class="container">
-  <div class="header">
-    <select [(ngModel)]="selectedType" class="dropdown">
-      <option value="students">Students</option>
-      <option value="instructors">Instructors</option>
-    </select>
+<div
+  class="base"
+  style="
+    background-color: rgb(157, 204, 255, 0.23);
+    border-radius: 12px;
+    width: 90%;
+    padding: 1%;
+    margin: auto;
+    margin-top: 2%;
+    min-height: 350px;
+  "
+>
+  <div class="container">
+    <div class="header">
+      <select [(ngModel)]="selectedType" class="dropdown">
+        <option value="students">Students</option>
+        <option value="instructors">Instructors</option>
+      </select>
+    </div>
+
+    <table class="table" style="min-height: 75%; min-width: 80% 5%">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let account of filteredAccounts; let i = index">
+          <td>{{ account.name }}</td>
+          <td>{{ account.status }}</td>
+          <td>
+            <button
+              class="btn btn-danger action-btn"
+              (click)="deleteAccount(i)"
+            >
+              Delete
+            </button>
+            <button
+              class="btn action-btn"
+              [ngClass]="{
+                'btn-success': account.status === 'In-Active',
+                'btn-warning': account.status === 'Active'
+              }"
+              (click)="toggleAccountStatus(i)"
+            >
+              {{ account.status === "Active" ? "Deactivate" : "Activate" }}
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button class="btn add-button" (click)="navigateToAdd()">
+      Add New Account
+    </button>
   </div>
-
-  <table class="table" style="max-height: 75%;max-width: 80% 5%;border-radius: 12px;">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Status</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let account of filteredAccounts; let i = index">
-        <td>{{ account.name }}</td>
-        <td>{{ account.status }}</td>
-        <td>
-          <button class="btn btn-danger action-btn" (click)="deleteAccount(i)">Delete</button>
-          <button
-            class="btn action-btn"
-            [ngClass]="{
-              'btn-success': account.status === 'In-Active',
-              'btn-warning': account.status === 'Active'
-            }"
-            (click)="toggleAccountStatus(i)">
-            {{ account.status === 'Active' ? 'Deactivate' : 'Activate' }}
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-  <button class="btn add-button" (click)="navigateToAdd()">Add New Account</button>
 </div>
-</div>
-
