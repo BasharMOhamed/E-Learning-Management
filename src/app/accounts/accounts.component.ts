@@ -1,8 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { getDatabase, get, ref, child } from '@angular/fire/database';
+import {
+  getDatabase,
+  get,
+  ref,
+  child,
+  remove,
+  update,
+} from '@angular/fire/database';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-accounts',
@@ -13,8 +21,9 @@ import { getDatabase, get, ref, child } from '@angular/fire/database';
 })
 export class AccountsComponent implements OnInit {
   dbRef = ref(getDatabase());
-  selectedType: string = 'students';
+  selectedType: string = 'student';
   accounts: any[] = [];
+  toastr = inject(ToastrService);
 
   constructor(private router: Router) {}
 
@@ -31,13 +40,10 @@ export class AccountsComponent implements OnInit {
             snapshot.val()[key].role == 'instructor'
           ) {
             this.accounts.push({
-              id: snapshot.val()[key].username,
-              courses: Object.entries(snapshot.val()[key].Courses || {}).map(
-                ([courseId, courseData]: [string, any]) => ({
-                  name: courseData.name,
-                  progress: courseData.progress.toString(),
-                })
-              ),
+              id: key,
+              name: snapshot.val()[key].username,
+              status: snapshot.val()[key].status,
+              type: snapshot.val()[key].role,
             });
           }
         });
@@ -56,24 +62,25 @@ export class AccountsComponent implements OnInit {
 
   deleteAccount(index: number) {
     const originalIndex = this.filteredAccounts[index].originalIndex;
+    const userId = this.filteredAccounts[index].id;
     this.accounts.splice(originalIndex, 1);
-    localStorage.setItem('accounts', JSON.stringify(this.accounts));
+    remove(child(this.dbRef, `/users/${userId}`)).then(() => {
+      this.toastr.success('Account deleted successfully');
+    });
   }
 
   toggleAccountStatus(index: number) {
     const originalIndex = this.filteredAccounts[index].originalIndex;
+    const userId = this.filteredAccounts[index].id;
     const account = this.accounts[originalIndex];
     account.status = account.status === 'Active' ? 'In-Active' : 'Active';
-    localStorage.setItem('accounts', JSON.stringify(this.accounts));
+    const updates: { [key: string]: any } = {};
+    updates['/users/' + userId + '/status'] = account.status;
+    update(this.dbRef, updates);
   }
 
   addAccount(account: any) {
     account.id = new Date().getTime(); // Unique ID for the account
     this.accounts.push(account);
-    localStorage.setItem('accounts', JSON.stringify(this.accounts));
-  }
-
-  navigateToAdd() {
-    this.router.navigate(['/add-account']);
   }
 }

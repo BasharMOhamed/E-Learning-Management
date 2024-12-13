@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from '../auth.service';
 import { Router, RouterModule } from '@angular/router';
 import { getDatabase, get, ref, child } from '@angular/fire/database';
+import { getAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-login',
@@ -44,8 +45,9 @@ export class LoginComponent {
             this.router.navigate(['Home']);
           } else if (userRole == 'student') {
             this.router.navigate(['Courses']);
+          } else {
+            this.router.navigate(['accounts']);
           }
-        } else {
         }
       })
       .catch((error) => console.log(error));
@@ -55,9 +57,8 @@ export class LoginComponent {
     if (form.valid) {
       const { email, password } = form.value;
       this.auth.login(email, password);
-      console.log(this.auth.firebaseAuth.currentUser);
+      console.log(this.auth.firebaseAuth.currentUser?.uid);
       console.log('Logged in successfully');
-
       this.getUserRole(this.auth.firebaseAuth.currentUser?.uid ?? '');
 
       this.auth.setUserId(this.auth.firebaseAuth.currentUser?.uid ?? '');
