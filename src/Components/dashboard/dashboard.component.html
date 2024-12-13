@@ -1,0 +1,38 @@
+<main class="main-content">
+  <!-- Filter Section -->
+  <div class="filter-section">
+    <h2 style="margin-bottom: 70px">Students Progress</h2>
+    <!-- Summary Section -->
+    <aside class="summary">
+      <h3>Total Students:</h3>
+      <p>80 students</p>
+      <p>In Progress: 50</p>
+      <p>Completed: 30</p>
+    </aside>
+    <select [(ngModel)]="selectedCourse" (change)="filterByCourse()">
+      <option *ngFor="let course of courses" [value]="course">
+        {{ course }}
+      </option>
+    </select>
+  </div>
+
+  <!-- Students Progress Section -->
+  <div class="students-progress">
+    <div class="progress-row" *ngFor="let student of filteredStudents">
+      <div class="progress-icon">
+        <img src="assets/student-icon.png" alt="Student Icon" />
+      </div>
+      <div class="progress-info">
+        <h4>{{ student.id }}</h4>
+        <p>{{ student.progress }}% Completed</p>
+        <div class="progress-bar">
+          <div
+            class="progress"
+            [style.width.%]="student.progress"
+            [class.completed]="student.progress === 100"
+          ></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

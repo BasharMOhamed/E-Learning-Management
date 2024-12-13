@@ -3,7 +3,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { NavBarComponent } from '../../Components/nav-bar/nav-bar.component';
+import { NavBarComponent } from '../nav-bar/nav-bar.component';
 
 @Component({
   selector: 'app-grading-form',

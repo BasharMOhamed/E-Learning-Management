@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { GradingFormComponent } from './grading/grading.component';
+import { GradingFormComponent } from '../Components/grading/grading.component';
 import { ToastrModule } from 'ngx-toastr';
 import { NavBarComponent } from '../Components/nav-bar/nav-bar.component';
 import { RouterModule } from '@angular/router';
