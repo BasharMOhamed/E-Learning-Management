@@ -4,6 +4,9 @@ import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './signup/signup.component';
 import { FirebaseAppModule } from '@angular/fire/app';
+import { AssignStudentsComponent } from "./assign-students/assign-students.component";
+import { CourseManagementComponent } from "./course-management/course-management.component";
+import { CourseTableComponent } from "./course-table/course-table.component";
 
 @Component({
   selector: 'app-root',
@@ -14,7 +17,10 @@ import { FirebaseAppModule } from '@angular/fire/app';
     ReactiveFormsModule,
     SignupComponent,
     FirebaseAppModule,
-  ],
+    AssignStudentsComponent,
+    CourseManagementComponent,
+    CourseTableComponent
+],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

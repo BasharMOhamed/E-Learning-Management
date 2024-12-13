@@ -1,0 +1,87 @@
+<div class="blue-container">
+  <h2>Assign Students</h2>
+  <div class="white-container">
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="courseName">Course Name</label>
+        <input
+          id="courseName"
+          name="courseName"
+          formControlName="courseName"
+          [class.error]="isFieldInvalid('courseName')"
+          type="text"
+          placeholder="Course"
+        />
+        <div *ngIf="isFieldInvalid('courseName')" class="error">
+          Course name is required.
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="courseId">Course Id</label>
+          <input
+            id="courseId"
+            name="courseId"
+            type="text"
+            formControlName="courseId"
+            [class.error]="isFieldInvalid('courseId')"
+            placeholder="id"
+          />
+          <div *ngIf="isFieldInvalid('courseId')" class="error">
+            Course ID is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="studentId">Student Id</label>
+          <input
+            id="studentId"
+            name="studentId"
+            type="text"
+            formControlName="studentId"
+            placeholder="id"
+            [class.error]="isFieldInvalid('studentId')"
+          />
+          <div *ngIf="isFieldInvalid('studentId')" class="error">
+            Student ID is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="studentName">Student Name</label>
+        <input
+          id="studentName"
+          name="studentName"
+          type="text"
+          formControlName="studentName"
+          [class.error]="isFieldInvalid('studentName')"
+          placeholder="Student Name"
+        />
+        <div *ngIf="isFieldInvalid('studentName')" class="error">
+          Student name is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="studentLevel">Student Level</label>
+        <input
+          id="studentLevel"
+          name="studentLevel"
+          type="text"
+          formControlName="studentLevel"
+          placeholder="Level"
+          [class.error]="isFieldInvalid('studentLevel')"
+        />
+        <div *ngIf="isFieldInvalid('studentLevel')" class="error">
+          Student level is required.
+        </div>
+      </div>
+
+      <button class="assign-button" type="submit" [disabled]="myForm.invalid">
+        Assign
+      </button>
+    </form>
+  </div>
+</div>
