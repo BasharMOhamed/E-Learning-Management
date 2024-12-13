@@ -44,3 +44,4 @@ export const appConfig: ApplicationConfig = {
     provideDatabase(() => getDatabase()),
   ],
 
+}

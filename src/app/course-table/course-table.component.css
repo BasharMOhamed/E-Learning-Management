@@ -1,0 +1,107 @@
+.course-container {
+  width: 90%;
+  margin: auto;
+  margin-top: 5%;
+  padding: 20px;
+  background-color: #f2f8ff; /* Light blue background */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff; /* White background for table */
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+thead th {
+  background-color: #4981BD; /* Header background color */
+  color: #fff;
+  padding: 15px;
+  text-align: center; /* Center-align header text */
+  font-weight: bold;
+  font-size: 14px;
+}
+
+tbody td {
+  padding: 15px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  font-size: 14px;
+  color:#4981BD ;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+button {
+  padding: 8px 12px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.button-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn-edit,
+.btn-archive {
+  width: 70%;
+  text-align: center; /* Center-align the button text */
+}
+
+.btn-edit {
+  background-color:#49BBBD; /* Green for edit button */
+  color: white;
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.btn-edit:hover{
+  background-color: #3a9fa1;
+}
+.btn-archive:hover{
+  background-color: #e22522;
+}
+.btn-archive {
+  background-color: #f44336;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+/* Archived button styles */
+.btn-archive.archived {
+  background-color: gray; /* Disabled gray color */
+  color: white;
+  cursor: not-allowed;
+}
+
+
+.btn-add {
+  display: block; 
+  margin: 4% auto;
+  background-color: #49BBBD;
+  color: white;
+  padding: 10px 25px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 50%;
+}
+
+.btn-add:hover {
+  background-color: #3a9fa1; /* Slightly darker teal on hover */
+}

@@ -1,0 +1,136 @@
+.blue-container {
+  background-color: #f0f8ff;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 70%;
+  margin: auto;
+  margin-top: 4%;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.white-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 95%;
+  margin: auto;
+}
+
+h2 {
+  text-align: left;
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 4%;
+  margin-right: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  color: #555;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+input:focus {
+  border-color: #49BBBD;
+  outline: none;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; /* Allows fields to wrap to the next line on small screens */
+}
+
+.form-row .form-group {
+  flex: 0 0 30%;
+}
+
+#studentId {
+  margin-right: 10% !important;
+}
+
+.assign-button {
+  display: block;
+  width: 60%;
+  padding: 10px;
+  background-color: #49BBBD;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 0 auto;
+}
+
+.assign-button:hover {
+  background-color: #3b8b85;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+}
+
+input.ng-touched.ng-invalid {
+  border: 1px solid red;
+}
+
+button[disabled] {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+button[disabled]:hover {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .blue-container {
+    max-width: 90%; /* Increase width for smaller devices */
+    padding: 15px;
+    margin-top: 6%;
+  }
+
+  .form-row {
+    flex-direction: column; /* Stack fields vertically on small screens */
+    gap: 20px;
+  }
+
+  .form-row .form-group {
+    flex: 0 0 100%; /* Fields take full width */
+    margin-right: 0;
+  }
+
+  .assign-button {
+    width: 80%; /* Wider button for small screens */
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 576px) {
+  .blue-container {
+    padding: 10px;
+  }
+
+  input {
+    font-size: 14px; /* Adjust input font size */
+    padding: 10px;
+  }
+
+  .assign-button {
+    font-size: 14px;
+    padding: 8px;
+  }
+}

@@ -1,0 +1,191 @@
+/* General Styles (for larger screens) */
+.blue-container {
+  background-color: #f0f8ff;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 70%;
+  margin: auto;
+  margin-top: 4%;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.white-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 95%;
+  margin: auto;
+}
+
+h2 {
+  text-align: left;
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 4%;
+  margin-right: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  color: #555;
+}
+
+input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+input:focus {
+  border-color: #49BBBD;
+  outline: none;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; /* Allows fields to wrap to the next line on small screens */
+}
+
+.form-row .form-group {
+  flex: 0 0 30%;
+}
+
+.add-button {
+  display: block;
+  width: 60%;
+  padding: 10px;
+  background-color: #49BBBD;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 0 auto;
+}
+
+.add-button:hover {
+  background-color: #3b8b85;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+}
+
+input.ng-touched.ng-invalid {
+  border: 1px solid red;
+}
+
+button[disabled] {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+button[disabled]:hover {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Style for the dropdown container */
+.dropdown {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Dropdown select styling */
+select {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #48C9B0; /* Light teal color for the text */
+  background-color: white;
+  appearance: none; /* Remove default arrow */
+  outline: none;
+  cursor: pointer;
+}
+
+option {
+  background-color: white;
+  color: #49BBBD;
+}
+
+option:hover {
+  background-color: #3b8b85;
+  color: white;
+}
+
+/* Optional: Add hover or focus styles for better UX */
+select:hover, select:focus {
+  border-color: #49BBBD;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+}
+
+/* Responsive Media Queries */
+
+/* For tablets and small screens (width <= 768px) */
+@media (max-width: 768px) {
+  .blue-container {
+    max-width: 90%;
+  }
+
+  .white-container {
+    max-width: 100%;
+    padding: 15px;
+  }
+
+  .form-row {
+    display: block;
+  }
+
+  .form-group {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+
+  .form-row .form-group {
+    flex: 0 0 100%;
+  }
+
+  .add-button {
+    width: 80%;
+  }
+}
+
+/* For very small screens like phones (width <= 480px) */
+@media (max-width: 480px) {
+  .blue-container {
+    max-width: 100%;
+    margin-top: 2%;
+    padding: 15px;
+  }
+
+  .white-container {
+    padding: 10px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  input, select {
+    font-size: 14px;
+  }
+
+  .add-button {
+    width: 100%;
+  }
+
+  /* Adjust spacing between elements for better readability */
+  .form-group {
+    margin-bottom: 10px;
+  }
+}
