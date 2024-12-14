@@ -1,153 +1,134 @@
-import { Component, OnInit } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { grades } from './../models/course.model';
+import { Component, inject, OnInit } from '@angular/core';
+import {
+  ReactiveFormsModule,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute , Router} from '@angular/router';
-import { DropdownMenuComponent } from "../dropdown-menu/dropdown-menu.component";
+import { ActivatedRoute, Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { CourseService } from '../course.service';
-import { CourseTableComponent } from '../course-table/course-table.component';
+import { getDatabase, get, ref, child } from '@angular/fire/database';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-course-management',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, DropdownMenuComponent,RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './course-management.component.html',
   styleUrls: ['./course-management.component.css'],
 })
 export class CourseManagementComponent implements OnInit {
   myForm: FormGroup;
-  mode: string | null = null; // 'add' or 'edit'
-  courseId: string | null = null;
-
-  courses: any[] = [];
-  isEditMode = false;
-  editIndex: number | null = null;
+  dbRef = ref(getDatabase());
+  toastr = inject(ToastrService);
   course: any = null;
+  options: any[] = [];
+  isEditMode = false;
 
-  constructor(private fb: FormBuilder, private route: ActivatedRoute,private courseService: CourseService) {
+  constructor(
+    private fb: FormBuilder,
+    private route: Router,
+    private courseService: CourseService,
+    private router: ActivatedRoute
+  ) {
     this.myForm = this.fb.group({
       courseName: ['', Validators.required],
       courseHours: ['', Validators.required],
-      status: ['', Validators.required],
       instructorName: ['', Validators.required], // Now binds to dropdown
-      studentGrades: ['', Validators.required],
+      final: ['', Validators.required],
+      midterm: ['', Validators.required],
+      quizes: ['', Validators.required],
+      practical: ['', Validators.required],
+      assignments: ['', Validators.required],
+    });
+
+    this.router.queryParamMap.subscribe((params) => {
+      const id = params.get('id');
+      console.log(id);
+      if (id) {
+        this.courseService.courses$.subscribe((courses) => {
+          this.course = courses.find((c) => c.id === id);
+          this.onEdit(this.course);
+          this.isEditMode = true;
+        });
+      }
     });
   }
 
-  // ngOnInit(): void {
-  //   this.route.queryParams.subscribe((params) => {
-  //     this.mode = params['mode'];
-  //     this.courseId = params['id']; // Only present for edit
-  //     console.log('Mode:', this.mode, 'Course ID:', this.courseId);
-  //   });
-  // }
   ngOnInit(): void {
     this.myForm.valueChanges.subscribe((values) => {
       console.log('Form Values:', values);
       console.log('Form Valid:', this.myForm.valid);
     });
 
-    const courseId = Number(this.route.snapshot.paramMap.get('id'));
-    this.course = this.courses.find((c) => c.id === courseId);
+    this.getAllIntructors();
   }
 
-    isFieldInvalid(field: string): boolean {
+  getAllIntructors() {
+    get(child(this.dbRef, '/users')).then((snapshot) => {
+      if (snapshot.exists()) {
+        Object.keys(snapshot.val()).forEach((key) => {
+          if (snapshot.val()[key].role == 'instructor') {
+            this.options.push({
+              name: snapshot.val()[key].username,
+            });
+          }
+        });
+        console.log(this.options);
+      } else {
+        console.log('none');
+      }
+    });
+  }
+
+  isFieldInvalid(field: string): boolean {
     const control = this.myForm.get(field);
     return !!(control?.invalid && (control?.dirty || control?.touched));
   }
   onSubmit(): void {
     if (this.myForm.valid) {
-      console.log('Form Submitted!', this.myForm.value);
-      alert('Form submitted successfully!');
-
-
-      const formData = this.myForm.value;
-
-
-
+      this.toastr.success('Form submitted successfully!');
+      this.route.navigate(['course-table']);
       const newCourse = {
         name: this.myForm.value.courseName,
         hours: this.myForm.value.courseHours,
         instructor: this.myForm.value.instructorName,
-        status: this.myForm.value.status,
-        grades: this.parseGrades(this.myForm.value.studentGrades),
-
+        grades: {
+          final: this.myForm.value.final,
+          midterm: this.myForm.value.midterm,
+          quizes: this.myForm.value.quizes,
+          practical: this.myForm.value.practical,
+          assignments: this.myForm.value.assignments,
+        },
+        isArchived: false,
       };
       if (this.isEditMode) {
         // Update course
-        if (this.editIndex !== null) {
-          this.courses[this.editIndex] = newCourse;
-        }
-        this.isEditMode = false;
-        this.editIndex = null;
+        this.courseService.addCourse(newCourse, this.course.id);
       } else {
-
         // Add new course
-        this.courses.push(newCourse);
-        console.log(newCourse);
         this.courseService.addCourse(newCourse);
       }
-
     } else {
       this.myForm.markAllAsTouched();
     }
-
   }
 
-
-
-  onEdit(course: any, index: number) {
-    this.isEditMode = true;
-    this.editIndex = index;
+  onEdit(course: any) {
+    console.log(course);
 
     this.myForm.patchValue({
       courseName: course.name,
       courseHours: course.hours,
-      status: course.status,
       instructorName: course.instructor,
-      studentGrades: this.formatGrades(course.grades),
+      final: course.grades.final,
+      midterm: course.grades.midterm,
+      quizes: course.grades.quizes,
+      practical: course.grades.practical,
+      assignments: course.grades.assignments,
     });
-  }
-  formatGrades(grades: any): string {
-    return `Theoretical: ${grades.theoretical}\nPractical: ${grades.practical}\nYearwork: ${grades.yearwork}\nMidterm: ${grades.midterm}\nQuizzes: ${grades.quizzes}`;
-  }
-  parseGrades(grades: string): Record<string, number> {
-    const defaultGrades = {
-      theoretical: 0.0,
-      practical: 20,
-      yearwork: 15,
-      midterm: 15,
-      quizzes: 10,
-    };
-
-    console.log("Input Grades:", grades);
-
-    // Normalize the input to handle both single-line and multi-line formats
-    const gradeParts = grades
-      .split(/\s*[\n;]\s*/) // Split by new lines or semi-colons with optional whitespace
-      .reduce((acc: Record<string, number>, part: string) => {
-        const [key, value] = part.split(":");
-        console.log("Processing Part:", part);
-
-        if (key && value) {
-          const formattedKey = key.trim().toLowerCase();
-          const formattedValue = parseFloat(value.trim()) || 0.0;
-          console.log("Formatted Key:", formattedKey, "Formatted Value:", formattedValue);
-
-          // Update only if the key exists in defaultGrades
-          if (formattedKey in defaultGrades) {
-            acc[formattedKey] = formattedValue;
-            console.log("Updated Accumulator:", acc);
-          }
-        }
-
-        return acc;
-      }, {});
-
-    // Merge with default grades to ensure all keys are accounted for
-    const finalGrades = { ...defaultGrades, ...gradeParts };
-
-    console.log("Final Parsed Grades:", finalGrades);
-    return finalGrades;
   }
 }

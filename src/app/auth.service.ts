@@ -1,12 +1,20 @@
 import { inject, Injectable } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
-import { Database, getDatabase, ref, set } from '@angular/fire/database';
+import {
+  child,
+  Database,
+  get,
+  getDatabase,
+  ref,
+  set,
+} from '@angular/fire/database';
+import { Router } from '@angular/router';
 import {
   createUserWithEmailAndPassword,
   updateProfile,
   signInWithEmailAndPassword,
 } from 'firebase/auth';
-import { from, Observable } from 'rxjs';
+import { BehaviorSubject, from, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -15,11 +23,33 @@ export class AuthService {
   firebaseAuth = inject(Auth);
   firebaseDatabase = inject(Database);
   userId: String = '';
-  constructor() {}
+  private isAuthenticated = new BehaviorSubject<boolean>(false);
+  isAuthenticated$: Observable<boolean> = this.isAuthenticated.asObservable();
+  constructor(private router: Router) {}
 
   setUserId(userId: String) {
     this.userId = userId;
   }
+
+  getUserRole(): String {
+    get(child(ref(this.firebaseDatabase), `/users/${this.userId}`))
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          const userRole = snapshot.val().role;
+          if (userRole == 'instructor') {
+            this.router.navigate(['Home']);
+          } else if (userRole == 'student') {
+            this.router.navigate(['Courses']);
+          } else if (userRole == 'admin') {
+            this.router.navigate(['accounts']);
+          }
+          console.log('role: ' + userRole);
+        }
+      })
+      .catch((error) => console.log(error));
+    return '';
+  }
+
   register(
     username: string,
     email: string,
@@ -40,6 +70,7 @@ export class AuthService {
         ssn: ssn,
         role: 'student',
         status: 'pending',
+        level: 1,
       });
     });
 
@@ -47,6 +78,12 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
+    this.isAuthenticated.next(true);
     return signInWithEmailAndPassword(this.firebaseAuth, email, password);
+  }
+
+  logout() {
+    this.isAuthenticated.next(false);
+    return this.firebaseAuth.signOut();
   }
 }

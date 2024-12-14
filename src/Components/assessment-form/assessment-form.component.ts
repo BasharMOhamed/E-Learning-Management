@@ -6,7 +6,6 @@ import {
   Validators,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { CourseManagementComponent } from '../course-management/course-management.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { getDatabase, ref, child, push, update } from '@angular/fire/database';
@@ -16,7 +15,7 @@ import { getDatabase, ref, child, push, update } from '@angular/fire/database';
   standalone: true,
   templateUrl: './assessment-form.component.html',
   styleUrls: ['./assessment-form.component.css'],
-  imports: [CommonModule, CourseManagementComponent, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
 })
 export class AssessmentFormComponent implements OnInit {
   dbRef = ref(getDatabase());

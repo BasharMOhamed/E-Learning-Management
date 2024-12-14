@@ -1,25 +1,41 @@
-import { Component } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CommonModule } from '@angular/common';  // Import CommonModule
+import { Component, inject, OnInit } from '@angular/core';
+import {
+  ReactiveFormsModule,
+  FormBuilder,
+  FormGroup,
+  Validators,
+  FormsModule,
+} from '@angular/forms';
+import { CommonModule } from '@angular/common'; // Import CommonModule
+import { getDatabase, get, ref, child, set } from '@angular/fire/database';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-assign-students',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],  // Add CommonModule to imports array
+  imports: [CommonModule, ReactiveFormsModule, FormsModule], // Add CommonModule to imports array
   templateUrl: './assign-students.component.html',
-  styleUrls: ['./assign-students.component.css']
+  styleUrls: ['./assign-students.component.css'],
 })
-export class AssignStudentsComponent {
+export class AssignStudentsComponent implements OnInit {
   myForm: FormGroup;
   submitted = false;
+  dbRef = ref(getDatabase());
+  courses: any[] = [];
+  students: any[] = [];
+  toastr = inject(ToastrService);
 
-  constructor(private fb: FormBuilder) {
+  ngOnInit(): void {
+    this.getCourses();
+    this.getStudents();
+  }
+
+  constructor(private fb: FormBuilder, private route: Router) {
     this.myForm = this.fb.group({
       courseName: ['', Validators.required],
-      courseId: ['', Validators.required],
-      studentId: ['', Validators.required],
       studentName: ['', Validators.required],
-      studentLevel: ['', Validators.required]
+      studentLevel: ['', Validators.required],
     });
   }
 
@@ -28,13 +44,64 @@ export class AssignStudentsComponent {
     return !!(control?.invalid && (control?.dirty || control?.touched));
   }
 
-  onSubmit(): void {
+  getCourses() {
+    get(child(this.dbRef, '/courses')).then((snapshot) => {
+      if (snapshot.exists()) {
+        this.courses = Object.keys(snapshot.val()).map((key) => ({
+          id: key,
+          name: snapshot.val()[key].name,
+          hours: snapshot.val()[key].hours,
+          instructor: snapshot.val()[key].instructor,
+          description: snapshot.val()[key].description,
+          academicYear: new Date().getFullYear(),
+        }));
+      } else {
+        console.log('none');
+      }
+    });
+  }
 
+  getStudents() {
+    get(child(this.dbRef, '/users')).then((snapshot) => {
+      if (snapshot.exists()) {
+        Object.keys(snapshot.val()).forEach((key) => {
+          if (snapshot.val()[key].role == 'student') {
+            this.students.push({
+              id: key,
+              name: snapshot.val()[key].username,
+              level: snapshot.val()[key].level,
+            });
+          }
+        });
+      } else {
+        console.log('none');
+      }
+    });
+  }
+
+  onSubmit(): void {
     if (this.myForm.valid) {
-      console.log('Form Submitted!', this.myForm.value);
-      alert('Form submitted successfully!');
+      this.toastr.success('Form submitted successfully!');
+      const { courseName, studentName, studentLevel } = this.myForm.value;
+      const course = this.courses.find((c) => c.name === courseName);
+      const studentId = this.students.find(
+        (s) => s.name === studentName && s.level == studentLevel
+      ).id;
+      console.log('courseId ' + course);
+      console.log('studentId ' + studentId);
+      set(ref(getDatabase(), `/users/${studentId}/Courses/${course.id}`), {
+        academicYear: course.academicYear,
+        ID: course.id,
+        name: course.name,
+        hours: course.hours,
+        instructor: course.instructor,
+        description: course.description,
+        progress: 0,
+      }).then(() => {
+        this.route.navigate(['course-management']);
+      });
     } else {
-      this.myForm.markAllAsTouched(); // Highlight all invalid fields
+      this.myForm.markAllAsTouched();
     }
   }
 }

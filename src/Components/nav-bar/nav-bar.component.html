@@ -34,14 +34,9 @@
   </div>
 </div>
 <ul *ngIf="expandMore" class="expand_menu">
-  <li><a routerLink="/Profile">Profile</a></li>
-  <hr />
-  <li><a>Logout</a></li>
+  <li><a (click)="logOut()">Logout</a></li>
 </ul>
 
 <ul *ngIf="showMenu" class="responsive_menu">
-  <li><a routerLink="/" [routerLinkActive]="'active-class'">Home</a></li>
-  <li><a routerLink="/Dashboard">Dashboard</a></li>
-  <li><a routerLink="/Courses">Courses</a></li>
-  <li><a routerLink="/Grades">Grades</a></li>
+  <!-- <ng-content></ng-content> -->
 </ul>

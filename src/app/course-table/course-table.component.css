@@ -18,7 +18,7 @@ table {
 }
 
 thead th {
-  background-color: #4981BD; /* Header background color */
+  background-color: #4981bd; /* Header background color */
   color: #fff;
   padding: 15px;
   text-align: center; /* Center-align header text */
@@ -31,11 +31,20 @@ tbody td {
   text-align: center;
   border-bottom: 1px solid #ddd;
   font-size: 14px;
-  color:#4981BD ;
+  color: #4981bd;
+}
+
+tr {
+  max-height: 100px;
 }
 
 tbody tr:last-child td {
   border-bottom: none;
+}
+
+.grades {
+  display: flex;
+  flex-direction: column;
 }
 
 button {
@@ -59,17 +68,17 @@ button {
 }
 
 .btn-edit {
-  background-color:#49BBBD; /* Green for edit button */
+  background-color: #49bbbd; /* Green for edit button */
   color: white;
   padding: 8px 12px;
   border-radius: 5px;
   font-size: 14px;
   cursor: pointer;
 }
-.btn-edit:hover{
+.btn-edit:hover {
   background-color: #3a9fa1;
 }
-.btn-archive:hover{
+.btn-archive:hover {
   background-color: #e22522;
 }
 .btn-archive {
@@ -84,14 +93,12 @@ button {
 .btn-archive.archived {
   background-color: gray; /* Disabled gray color */
   color: white;
-  cursor: not-allowed;
 }
 
-
 .btn-add {
-  display: block; 
+  display: block;
   margin: 4% auto;
-  background-color: #49BBBD;
+  background-color: #49bbbd;
   color: white;
   padding: 10px 25px;
   font-size: 16px;
@@ -104,4 +111,53 @@ button {
 
 .btn-add:hover {
   background-color: #3a9fa1; /* Slightly darker teal on hover */
+}
+
+@media (max-width: 768px) {
+  .course-container {
+    margin-top: 10%;
+    padding: 15px;
+  }
+
+  table {
+    font-size: 12px;
+  }
+
+  thead th,
+  tbody td {
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  .btn-add {
+    width: 80%;
+  }
+
+  .btn-edit,
+  .btn-archive {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  thead th,
+  tbody td {
+    font-size: 10px;
+    padding: 8px;
+  }
+
+  .btn-add {
+    width: 90%;
+  }
+
+  .btn-edit,
+  .btn-archive {
+    font-size: 12px;
+  }
 }

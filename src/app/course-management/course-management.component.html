@@ -32,46 +32,100 @@
             Course Hours is required.
           </div>
         </div>
-
-        <div class="form-group">
-          <label for="Status">Status</label>
-          <input
-            id="status"
-            name="status"
-            type="text"
-            formControlName="status"
-            placeholder="status"
-            [class.error]="isFieldInvalid('status')"
-          />
-          <div *ngIf="isFieldInvalid('status')" class="error">
-            status is required.
-          </div>
-        </div>
-
         <div class="form-grou">
           <label for="InstructorName">Instructor Name</label>
-          <app-dropdown-menu
+          <select
+            name="instructorName"
+            id="instructorName"
             formControlName="instructorName"
-          ></app-dropdown-menu>
+          >
+            <option value="" disabled selected>Select an option</option>
+            <option *ngFor="let option of options" [value]="option.name">
+              {{ option.name }}
+            </option>
+          </select>
+          <!-- <app-dropdown-menu
+            formControlName="instructorName"
+          ></app-dropdown-menu> -->
         </div>
       </div>
 
       <div class="form-group">
-        <label for="studentGrades">Student Grades</label>
+        <label for="final">Final </label>
         <input
-          id="studentGrades"
-          name="studentGrades"
+          id="final"
+          name="final"
           type="text"
-          formControlName="studentGrades"
-          placeholder="Theoretical: 0.0
-          Practical: 0.0
-          Yearwork: 0.0
-          Midterm: 0.0
-          Quizzes: 0.0"
-          [class.error]="isFieldInvalid('studentGrades')"
+          formControlName="final"
+          placeholder="Final: 0.0"
+          [class.error]="isFieldInvalid('final')"
           required
         />
-        <div *ngIf="isFieldInvalid('studentGrades')" class="error">
+        <div *ngIf="isFieldInvalid('final')" class="error">
+          grade is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="midterm">Midterm</label>
+        <input
+          id="midterm"
+          name="midterm"
+          type="text"
+          formControlName="midterm"
+          placeholder="Midterm: 0.0"
+          [class.error]="isFieldInvalid('midterm')"
+          required
+        />
+        <div *ngIf="isFieldInvalid('midterm')" class="error">
+          grades is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="quizes">Quizes</label>
+        <input
+          id="quizes"
+          name="quizes"
+          type="text"
+          formControlName="quizes"
+          placeholder="Quizes: 0.0"
+          [class.error]="isFieldInvalid('Quizes')"
+          required
+        />
+        <div *ngIf="isFieldInvalid('quizes')" class="error">
+          grades is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="quizes">Practical</label>
+        <input
+          id="practical"
+          name="practical"
+          type="text"
+          formControlName="practical"
+          placeholder="Practical: 0.0"
+          [class.error]="isFieldInvalid('practical')"
+          required
+        />
+        <div *ngIf="isFieldInvalid('practical')" class="error">
+          grades is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="assignments">Assignments</label>
+        <input
+          id="assignments"
+          name="assignments"
+          type="text"
+          formControlName="assignments"
+          placeholder="Assignments: 0.0"
+          [class.error]="isFieldInvalid('Assignments')"
+          required
+        />
+        <div *ngIf="isFieldInvalid('Assignments')" class="error">
           grades is required.
         </div>
       </div>

@@ -21,36 +21,12 @@ import { getAuth } from '@angular/fire/auth';
 export class LoginComponent {
   dbRef = ref(getDatabase());
   loginForm!: FormGroup;
-  constructor(
-    private fb: FormBuilder,
-    private auth: AuthService,
-    private router: Router
-  ) {}
+  constructor(private fb: FormBuilder, private auth: AuthService) {}
   ngOnInit() {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
-  }
-
-  getUserRole(userId: String) {
-    get(child(this.dbRef, `/users/${userId}`))
-      .then((snapshot) => {
-        if (snapshot.exists()) {
-          console.log(snapshot.val().role.toString());
-
-          const userRole = snapshot.val().role.toString();
-          console.log('role: ' + userRole);
-          if (userRole == 'instructor') {
-            this.router.navigate(['Home']);
-          } else if (userRole == 'student') {
-            this.router.navigate(['Courses']);
-          } else {
-            this.router.navigate(['accounts']);
-          }
-        }
-      })
-      .catch((error) => console.log(error));
   }
 
   onSubmit(form: FormGroup) {
@@ -59,9 +35,8 @@ export class LoginComponent {
       this.auth.login(email, password);
       console.log(this.auth.firebaseAuth.currentUser?.uid);
       console.log('Logged in successfully');
-      this.getUserRole(this.auth.firebaseAuth.currentUser?.uid ?? '');
-
       this.auth.setUserId(this.auth.firebaseAuth.currentUser?.uid ?? '');
+      this.auth.getUserRole();
       form.reset();
     } else {
       console.log(form.get('email')?.errors);

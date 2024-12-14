@@ -1,124 +1,116 @@
 /* Overall container */
 .container {
-    max-width: 700px;
-    margin: auto;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    
-  
-  /* Card layout */
-  .card {
-    width: 100%;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 40px;
-    overflow: hidden;
-  }
-  
-  .card-header {
-    background-color: #f8f9fa;
-    text-align: center;
-    padding: 5px;
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-  
-  .card-body {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  
-  .row {
-    display: flex;
-    gap: 40px;
-    justify-content: space-between;
-  }
-  
-  .col {
-    flex: 1;
-  }
-  
- 
-  .form-group {
-    display: flex;
-    flex-direction: column;
-     margin-top: 40px;
-    gap: 15px;
-  }
-  
-  label {
-    margin-bottom: 5px;
-    font-weight: 500;
-  }
-  
-  input {
-    border: 1px solid #ced4da;
-    border-radius: 50px;
-    padding: 8px;
-  }
-  
-  input:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 3px rgba(0, 123, 255, 0.5);
-  }
-  
-  /* Error message */
-  .error-message {
-    font-size: 0.875rem;
-    color: red;
-    margin-top: 5px;
-  }
-  
-  
-  button {
-    width: 30%;
-    padding: 10px;
-    border: none;
-    margin-top: 15px;
-    border-radius: 50px;
-    background-color: #49BBBD;
-    color: white;
-    font-size: 1rem;
-    cursor: pointer;
-    
-    /* display: flex;
+  max-width: 700px;
+  margin: auto;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* Card layout */
+.card {
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 40px;
+  overflow: hidden;
+}
+
+.card-header {
+  background-color: #f8f9fa;
+  text-align: center;
+  padding: 5px;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.card-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.row {
+  display: flex;
+  gap: 40px;
+  justify-content: space-between;
+}
+
+.col {
+  flex: 1;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  gap: 15px;
+}
+
+label {
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+input {
+  border: 1px solid #ced4da;
+  border-radius: 50px;
+  padding: 8px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 3px rgba(0, 123, 255, 0.5);
+}
+
+/* Error message */
+.error-message {
+  font-size: 0.875rem;
+  color: red;
+  margin-top: 5px;
+}
+
+button {
+  width: 30%;
+  padding: 10px;
+  border: none;
+  margin-top: 15px;
+  border-radius: 50px;
+  background-color: #49bbbd;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+
+  /* display: flex;
     justify-content: center;
     align-items: center;
     height: 100%; */
-    /* text-align: center; */
-    
-  }
-  .button{
-    width: 100%;
-    text-align: center;
-  
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  .toast {
-    display: flex; /* Use Flexbox for toast layout */
-    justify-content: space-between; /* Space out elements in the toast */
-    align-items: center; /* Vertically align elements */
-    background-color: #f1f1f1; /* Change background color */
-    color: #333; /* Change text color */
-    border-radius: 5px;
-    padding: 10px;
-    font-size: 14px;
-  }
-  
-  
-  @media (max-width: 576px) {
-    .row {
-      flex-direction: column;
-    }
-    
+  /* text-align: center; */
+}
+.button {
+  width: 100%;
+  text-align: center;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+.toast {
+  display: flex; /* Use Flexbox for toast layout */
+  justify-content: space-between; /* Space out elements in the toast */
+  align-items: center; /* Vertically align elements */
+  background-color: #f1f1f1; /* Change background color */
+  color: #333; /* Change text color */
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 14px;
+}
+
+@media (max-width: 576px) {
+  .row {
+    flex-direction: column;
   }
 }

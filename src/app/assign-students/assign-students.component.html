@@ -1,51 +1,17 @@
 <div class="blue-container">
-  <h2>Assign Students</h2>
   <div class="white-container">
+    <h2>Assign Students</h2>
     <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="courseName">Course Name</label>
-        <input
-          id="courseName"
-          name="courseName"
-          formControlName="courseName"
-          [class.error]="isFieldInvalid('courseName')"
-          type="text"
-          placeholder="Course"
-        />
+        <select formControlName="courseName">
+          <option value="" disabled selected hidden>Select Course</option>
+          <option *ngFor="let course of courses" [value]="course.name">
+            {{ course.name }}
+          </option>
+        </select>
         <div *ngIf="isFieldInvalid('courseName')" class="error">
           Course name is required.
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group">
-          <label for="courseId">Course Id</label>
-          <input
-            id="courseId"
-            name="courseId"
-            type="text"
-            formControlName="courseId"
-            [class.error]="isFieldInvalid('courseId')"
-            placeholder="id"
-          />
-          <div *ngIf="isFieldInvalid('courseId')" class="error">
-            Course ID is required.
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="studentId">Student Id</label>
-          <input
-            id="studentId"
-            name="studentId"
-            type="text"
-            formControlName="studentId"
-            placeholder="id"
-            [class.error]="isFieldInvalid('studentId')"
-          />
-          <div *ngIf="isFieldInvalid('studentId')" class="error">
-            Student ID is required.
-          </div>
         </div>
       </div>
 

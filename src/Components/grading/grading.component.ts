@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
-import { getDatabase, get, ref, update } from '@angular/fire/database';
+import { getDatabase, get, ref, update, child } from '@angular/fire/database';
 import { AuthService } from '../../app/auth.service';
 
 interface Course {
@@ -48,15 +48,23 @@ export class GradingFormComponent {
 
   fetchAllStudents() {
     const usersRef = ref(this.database, '/users');
-    get(usersRef).then((snapshot) => {
+    get(child(ref(this.database), '/users')).then((snapshot) => {
       if (snapshot.exists()) {
-        console.log(snapshot.val());
-        const userObj = snapshot.val();
-        this.users = Object.entries(userObj).map(([key, value]) => {
-          return { id: key, ...(value as Course) };
+        Object.keys(snapshot.val()).forEach((key) => {
+          if (snapshot.val()[key].role == 'student') {
+            this.users.push({
+              id: snapshot.val()[key].username,
+              courses: Object.entries(snapshot.val()[key].Courses || {}).map(
+                ([courseId, courseData]: [string, any]) => ({
+                  name: courseData.name,
+                  progress: courseData.progress.toString(),
+                })
+              ),
+            });
+          }
         });
       } else {
-        console.log('No data available');
+        console.log('none');
       }
     });
   }
