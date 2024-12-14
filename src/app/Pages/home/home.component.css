@@ -1,0 +1,56 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.container {
+  padding: 5rem 8rem;
+}
+.progress-bar {
+  background-color: #d9d9d9;
+  height: 20px;
+  border-radius: 25px;
+}
+
+.progress-bar-fill {
+  background-color: #49bbbd;
+  height: 20px;
+  border-radius: 25px;
+}
+
+.course-progress {
+  box-shadow: 0 0 5px 5px rgb(0, 0, 0, 0.25);
+  padding: 1rem;
+  border-radius: 5px;
+  margin-bottom: 2rem;
+  display: flex;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.course-info {
+  flex: 1;
+}
+.course-info * {
+  margin: 5px 0;
+}
+
+img {
+  max-width: 200px;
+  border-radius: 5px;
+}
+
+.instructor-name {
+  color: #4981bd;
+}
+
+@media (max-width: 700px) {
+  .container {
+    padding: 1rem;
+  }
+  img {
+    width: 100px;
+    height: 120px;
+  }
+}

@@ -10,6 +10,7 @@ import { AuthService } from '../auth.service';
 import { Router, RouterModule } from '@angular/router';
 import { getDatabase, get, ref, child } from '@angular/fire/database';
 import { getAuth } from '@angular/fire/auth';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -21,8 +22,17 @@ import { getAuth } from '@angular/fire/auth';
 export class LoginComponent {
   dbRef = ref(getDatabase());
   loginForm!: FormGroup;
-  constructor(private fb: FormBuilder, private auth: AuthService) {}
+  constructor(
+    private fb: FormBuilder,
+    private auth: AuthService,
+    private router: Router,
+    private toastr: ToastrService
+  ) {}
   ngOnInit() {
+    // const user = getAuth().currentUser;
+    // if (user != null) {
+    //   this.router.navigateByUrl('/home');
+    // }
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
@@ -32,14 +42,24 @@ export class LoginComponent {
   onSubmit(form: FormGroup) {
     if (form.valid) {
       const { email, password } = form.value;
-      this.auth.login(email, password);
-      console.log(this.auth.firebaseAuth.currentUser?.uid);
-      console.log('Logged in successfully');
-      this.auth.setUserId(this.auth.firebaseAuth.currentUser?.uid ?? '');
-      this.auth.getUserRole();
+
+      try {
+        this.auth
+          .login(email, password)
+          .then(() => {
+            this.auth.setUserId(this.auth.firebaseAuth.currentUser?.uid ?? '');
+            this.auth.getUserRole();
+            this.router.navigateByUrl('/');
+            this.toastr.success('Login Successfully!', 'success');
+          })
+          .catch((e) => {
+            this.toastr.error('Invalid credentials');
+          });
+      } catch (e) {
+        this.toastr.error('Invalid credentials');
+      }
       form.reset();
     } else {
-      console.log(form.get('email')?.errors);
     }
   }
 }

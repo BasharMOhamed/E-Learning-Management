@@ -13,6 +13,7 @@ import { AccountsComponent } from './accounts/accounts.component';
 import { CourseTableComponent } from './course-table/course-table.component';
 import { AssignStudentsComponent } from './assign-students/assign-students.component';
 import { AuthGuard } from './auth.guard';
+import { HomeComponent } from './Pages/home/home.component';
 
 export const routes: Routes = [
   { path: 'auth', component: LoginComponent },
@@ -65,4 +66,10 @@ export const routes: Routes = [
   { path: 'Home', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'accounts', component: AccountsComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: '/auth', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'logout', redirectTo: 'auth' },
+  { path: 'home', component: HomeComponent },
+  // { path: 'Dashboard' },
+  // { path: 'courses' },
+  // { path: 'grades' },
 ];

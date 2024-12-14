@@ -1,25 +1,5 @@
-<app-nav-bar>
-  <li>
-    <a routerLink="/accounts" routerLinkActive="active-class"
-      >Accounts Management</a
-    >
-  </li>
-  <li>
-    <a routerLink="/course-management" routerLinkActive="active-class"
-      >Courses</a
-    >
-  </li>
-  <li>
-    <a routerLink="/course-table" routerLinkActive="active-class"
-      >Add new Course</a
-    >
-  </li>
-  <li>
-    <a routerLink="/assign-students" routerLinkActive="active-class"
-      >Students Assinging</a
-    >
-  </li>
-</app-nav-bar>
-<router-outlet>
-  <!-- <app-accounts></app-accounts> -->
-</router-outlet>
+<!-- <app-login></app-login> -->
+<!-- <app-signup></app-signup> -->
+
+<app-nav-bar *ngIf="auth.firebaseAuth.currentUser"></app-nav-bar>
+<router-outlet> </router-outlet>
