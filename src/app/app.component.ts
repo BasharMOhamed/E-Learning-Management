@@ -8,7 +8,6 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-<<<<<<< HEAD
 export class AppComponent implements OnInit {
   constructor(public auth: AuthService) {}
   LoggedIn!: boolean;
@@ -21,8 +20,7 @@ export class AppComponent implements OnInit {
       this.LoggedIn = false;
     }
   }
-=======
+}
 export class AppComponent {
->>>>>>> 4ef7da3 (firebase installation)
   title = 'e-learning-project';
 }

@@ -1,0 +1,61 @@
+<!-- <div class="container">
+    <div class="course-progress-container">
+      <div class="header">
+        <h2>Student progress</h2>
+        
+      </div>
+
+      
+      
+    </div>
+    <div class="course-completed-container"></div>
+    <div class="header">
+      <h2>Completed Courses</h2>
+      <h2>{{ Completed.length }} Courses</h2>
+    </div>
+  
+    <div *ngFor="let course of Completed">
+      <div class="course-progress completed">
+        <img src="plan-your-online-course.jpg" alt="Course Icon" />
+        <div class="course-info">
+          <h3 class="course-name">{{ course.name }}</h3>
+          <p class="instructor-name">{{ course.instructor }}</p>
+          <div class="progress-bar completed">
+            <div class="progress-bar-fill" style="width: 100%"></div>
+          </div>
+          <p>Completed</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+   -->
+   <div class="dashboard-container">
+    <h1>Students Progress</h1>
+    <div class="progress-section">
+      <div class="students-progress">
+        <div *ngFor="let student of students" class="student-card">
+          <img src="assets/student-icon.png" alt="Student Icon" />
+          <div class="student-info">
+            <p><strong>Student ID:</strong> {{ student.id }}</p>
+            <p>
+              <strong>{{ student.progress === 100 ? 'Completed' : student.progress + '% Completed' }}</strong>
+            </p>
+            <div class="progress-bar">
+              <div
+                class="progress-bar-fill"
+                [style.width.%]="student.progress"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="summary-panel">
+        <h3>Total Students: {{ totalStudents }}</h3>
+        <p>In progress: {{ inProgress }}</p>
+        <p>Completed: {{ completed }}</p>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,133 @@
+/* .header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+  
+  .container {
+    padding: 5rem 8rem;
+  }
+  .progress-bar {
+    background-color: #d9d9d9;
+    height: 20px;
+    border-radius: 25px;
+  }
+  
+  .progress-bar-fill {
+    background-color: #49bbbd;
+    height: 20px;
+    border-radius: 25px;
+  }
+  
+  .course-progress {
+    box-shadow: 0 0 5px 5px rgb(0, 0, 0, 0.25);
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 1.5rem;
+    align-items: start;
+  }
+  
+  .course-info {
+    flex: 1;
+  }
+  .course-info * {
+    margin: 5px 0;
+  }
+  
+  img {
+    max-width: 200px;
+    border-radius: 5px;
+  }
+  
+  .instructor-name {
+    color: #4981bd;
+  }
+  
+  @media (max-width: 700px) {
+    .container {
+      padding: 1rem;
+    }
+    img {
+      width: 100px;
+      height: 120px;
+    }
+  }
+   */
+   .dashboard-container {
+    padding: 2rem;
+    font-family: Arial, sans-serif;
+  }
+  
+  h1 {
+    margin-bottom: 1.5rem;
+  }
+  
+  .progress-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+  
+  .students-progress {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .student-card {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .student-card img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
+  
+  .student-info {
+    flex: 1;
+  }
+  
+  .progress-bar {
+    width: 100%;
+    background-color: #e0e0e0;
+    height: 10px;
+    border-radius: 5px;
+    margin-top: 0.5rem;
+  }
+  
+  .progress-bar-fill {
+    height: 10px;
+    background-color: #49bbbd;
+    border-radius: 5px;
+  }
+  
+  .summary-panel {
+    flex: 1;
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f4f4f4;
+    text-align: center;
+  }
+  
+  @media (max-width: 768px) {
+    .progress-section {
+      flex-direction: column;
+    }
+  
+    .students-progress,
+    .summary-panel {
+      flex: 1;
+    }
+  }
+  
