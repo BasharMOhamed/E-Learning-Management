@@ -5,7 +5,7 @@
     alt="#"
   />
   <div>
-    <ul class="links">
+    <ul class="links" [ngClass]="showMenu ? 'responsive_menu' : ''">
       <ng-content></ng-content>
     </ul>
   </div>

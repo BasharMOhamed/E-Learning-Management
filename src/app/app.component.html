@@ -1,5 +1,32 @@
 <!-- <app-login></app-login> -->
 <!-- <app-signup></app-signup> -->
 
-<app-nav-bar *ngIf="auth.firebaseAuth.currentUser"></app-nav-bar>
+<app-nav-bar *ngIf="role">
+  <ul style="list-style: none">
+    <li *ngIf="role == 'instructor'">
+      <a routerLink="/Home" style="padding: 20px">Home</a>
+      <a routerLink="/course-management" style="padding: 20px"
+        >Courses Management</a
+      >
+      <a routerLink="/grading" style="padding: 20px">Grading</a>
+    </li>
+    <li *ngIf="role == 'student'">
+      <a routerLink="/home" style="padding: 20px">Home</a>
+      <a routerLink="/Courses" style="padding: 20px">My Courses</a>
+      <a routerLink="/Grades" style="padding: 20px">Grades</a>
+    </li>
+    <li *ngIf="role == 'admin'">
+      <a routerLink="/accounts" style="padding: 20px">Manage Accounts</a>
+      <a routerLink="/course-table" style="padding: 20px">Courses Management</a>
+      <a routerLink="/assign-students" style="padding: 20px"
+        >Students Assigning</a
+      >
+    </li>
+  </ul>
+</app-nav-bar>
+
+<!-- <ul class="links">
+
+-->
 <router-outlet> </router-outlet>
+<!-- <app-course-management></app-course-management> -->

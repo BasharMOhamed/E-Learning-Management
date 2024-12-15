@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../app/auth.service';
+import { child, Database, get, ref } from '@angular/fire/database';
 
 @Component({
   selector: 'app-nav-bar',
@@ -14,7 +15,10 @@ import { AuthService } from '../../app/auth.service';
 export class NavBarComponent {
   expandMore: boolean = false;
   showMenu: boolean = false;
-
+  userId: any;
+  firebaseDatabase = inject(Database);
+  router: any;
+  userRole: any;
   constructor(private auth: AuthService, private route: Router) {}
 
   toogleExpandMore(): void {
@@ -29,4 +33,9 @@ export class NavBarComponent {
     this.auth.logout();
     this.route.navigate(['/auth']);
   }
+
+
+  // firebaseDatabase(firebaseDatabase: any): any {
+  //   throw new Error('Method not implemented.');
+  // }
 }

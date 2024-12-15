@@ -39,9 +39,13 @@ export class AuthService {
         if (snapshot.exists()) {
           const userRole = snapshot.val().role;
           if (userRole == 'instructor') {
+
             this.router.navigate(['Home']);
+
           } else if (userRole == 'student') {
+
             this.router.navigate(['Courses']);
+
           } else if (userRole == 'admin') {
             this.router.navigate(['accounts']);
           }

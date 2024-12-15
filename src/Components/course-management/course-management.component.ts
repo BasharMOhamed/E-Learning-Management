@@ -14,9 +14,11 @@ import { CourseService } from '../../app/course.service';
 export class CourseMaterialComponent {
   courses: any[] = [];
   constructor(private router: Router, private courseService: CourseService) {
+    this.courseService.getAllCourses(); 
     this.courseService.courses$.subscribe((courses) => {
       this.courses = courses;
     });
+    console.log(this.courses);
   }
 
   editCourse(course: any) {

@@ -1,6 +1,6 @@
 import { Routes, CanActivate } from '@angular/router';
 import { CourseMaterialComponent } from '../Components/course-management/course-management.component';
-import { CourseManagementComponent } from './course-management/course-management.component';
+import { CourseManagementComponent } from './courses-management/course-management.component';
 import { AssessmentFormComponent } from '../Components/assessment-form/assessment-form.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';

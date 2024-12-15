@@ -24,6 +24,7 @@ export class CourseService {
           this.coursesSubject.next(
             Object.keys(snapshot.val()).map((key) => ({
               id: key,
+              description:snapshot.val()[key].description,
               hours: snapshot.val()[key].hours.toString(),
               name: snapshot.val()[key].name,
               instructor: snapshot.val()[key].instructor,

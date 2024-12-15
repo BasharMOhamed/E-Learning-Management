@@ -1,4 +1,4 @@
-import { grades } from './../models/course.model';
+import { grades } from '../models/course.model';
 import { Component, inject, OnInit } from '@angular/core';
 import {
   ReactiveFormsModule,
@@ -119,7 +119,6 @@ export class CourseManagementComponent implements OnInit {
 
   onEdit(course: any) {
     console.log(course);
-
     this.myForm.patchValue({
       courseName: course.name,
       courseHours: course.hours,

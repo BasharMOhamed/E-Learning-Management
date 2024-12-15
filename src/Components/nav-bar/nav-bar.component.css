@@ -38,7 +38,10 @@ a:link {
   font-size: 24;
   font-weight: 500;
   gap: 15px;
+  /* word-spacing: 10px; */
 }
+
+
 
 .userInfoContainer {
   display: flex;
