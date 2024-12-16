@@ -81,25 +81,33 @@ export class AssignStudentsComponent implements OnInit {
 
   onSubmit(): void {
     if (this.myForm.valid) {
-      this.toastr.success('Form submitted successfully!');
       const { courseName, studentName, studentLevel } = this.myForm.value;
       const course = this.courses.find((c) => c.name === courseName);
       const studentId = this.students.find(
         (s) => s.name === studentName && s.level == studentLevel
-      ).id;
-      console.log('courseId ' + course);
-      console.log('studentId ' + studentId);
-      set(ref(getDatabase(), `/users/${studentId}/Courses/${course.id}`), {
-        academicYear: course.academicYear,
-        ID: course.id,
-        name: course.name,
-        hours: course.hours,
-        instructor: course.instructor,
-        description: course.description,
-        progress: 0,
-      }).then(() => {
-        this.route.navigate(['course-management']);
-      });
+      );
+      if (studentId) {
+        this.toastr.success('Form submitted successfully!');
+        console.log('courseId ' + course);
+        console.log('studentId ' + studentId);
+        set(ref(getDatabase(), `/users/${studentId.id}/Courses/${course.id}`), {
+          academicYear: course.academicYear,
+          ID: course.id,
+          name: course.name,
+          hours: course.hours,
+          instructor: course.instructor,
+          description: course.description,
+          progress: 0,
+        }).then(() => {
+          this.route.navigate(['course-table']);
+        });
+      } else {
+        console.log('here');
+
+        this.toastr.warning(
+          'Student not found or does not match the selected level.'
+        );
+      }
     } else {
       this.myForm.markAllAsTouched();
     }

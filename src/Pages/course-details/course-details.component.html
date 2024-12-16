@@ -79,7 +79,9 @@
               {{ assignment.description }}
             </span>
           </div>
-          <span class="deadline">Deadline: {{ assignment.deadline }}</span>
+          <span class="deadline"
+            >Deadline: {{ assignment.deadLine | date }}</span
+          >
         </div>
         <button class="" *ngIf="!assignment.solved" (click)="solve(assignment)">
           Solve

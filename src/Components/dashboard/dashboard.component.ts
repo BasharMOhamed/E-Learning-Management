@@ -13,9 +13,10 @@ import { getDatabase, get, ref, child } from '@angular/fire/database';
 export class DashboardComponent implements OnInit {
   dbRef = ref(getDatabase());
   courses: any[] = [];
-  selectedCourse = 'All Students';
+  selectedCourse = 'All Courses';
   students: any[] = [];
   filteredStudents: any[] = [];
+  studentsCount = 0;
 
   ngOnInit(): void {
     this.getCourses();
@@ -50,6 +51,13 @@ export class DashboardComponent implements OnInit {
                 })
               ),
             });
+            this.students.forEach((student) => {
+              console.log('length ' + student.courses.length);
+
+              if (student.courses.length > 0) {
+                this.studentsCount++;
+              }
+            });
           }
         });
         this.filteredStudents = this.students;
@@ -60,14 +68,25 @@ export class DashboardComponent implements OnInit {
   }
 
   filterByCourse() {
+    // console.log(this.selectedCourse);
+
     if (this.selectedCourse === 'All Students') {
       this.filteredStudents = this.students;
     } else {
       this.filteredStudents = this.students.filter((student) => {
+        console.log(student.courses);
+
         for (let i = 0; i < student.courses.length; i++) {
-          student.courses[i] == this.selectedCourse;
-          return student;
+          console.log('here');
+
+          if (student.courses[i].name == this.selectedCourse) {
+            console.log('true');
+            console.log(student);
+
+            return true;
+          }
         }
+        return false;
       });
     }
   }

@@ -11,6 +11,9 @@
   <div class="container">
     <!-- Students Progress Section -->
     <div class="students-progress">
+      <p class="no-courses" *ngIf="studentsCount == 0">
+        No Students assigned to courses yet!
+      </p>
       <ng-container *ngFor="let student of filteredStudents">
         <ng-container *ngIf="student.courses.length >= 1">
           <div class="progress-row" *ngFor="let course of student.courses">
@@ -39,7 +42,7 @@
       <!-- Summary Section -->
       <div class="summary">
         <h3>Total Students:</h3>
-        <p>{{ students.length }} students</p>
+        <p>{{ studentsCount }} students</p>
       </div>
     </div>
   </div>

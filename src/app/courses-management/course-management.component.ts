@@ -43,6 +43,7 @@ export class CourseManagementComponent implements OnInit {
       quizes: ['', Validators.required],
       practical: ['', Validators.required],
       assignments: ['', Validators.required],
+      description: ['', Validators.required],
     });
 
     this.router.queryParamMap.subscribe((params) => {
@@ -73,6 +74,7 @@ export class CourseManagementComponent implements OnInit {
         Object.keys(snapshot.val()).forEach((key) => {
           if (snapshot.val()[key].role == 'instructor') {
             this.options.push({
+              id: key,
               name: snapshot.val()[key].username,
             });
           }
@@ -103,14 +105,18 @@ export class CourseManagementComponent implements OnInit {
           practical: this.myForm.value.practical,
           assignments: this.myForm.value.assignments,
         },
+        description: this.myForm.value.description,
         isArchived: false,
       };
+      const instructorId = this.options.find(
+        (option) => option.name == newCourse.instructor
+      ).id;
       if (this.isEditMode) {
         // Update course
-        this.courseService.addCourse(newCourse, this.course.id);
+        this.courseService.addCourse(newCourse, instructorId, this.course.id);
       } else {
         // Add new course
-        this.courseService.addCourse(newCourse);
+        this.courseService.addCourse(newCourse, instructorId);
       }
     } else {
       this.myForm.markAllAsTouched();
@@ -128,6 +134,7 @@ export class CourseManagementComponent implements OnInit {
       quizes: course.grades.quizes,
       practical: course.grades.practical,
       assignments: course.grades.assignments,
+      description: course.description,
     });
   }
 }

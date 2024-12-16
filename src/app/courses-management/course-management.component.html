@@ -44,9 +44,22 @@
               {{ option.name }}
             </option>
           </select>
-          <!-- <app-dropdown-menu
-            formControlName="instructorName"
-          ></app-dropdown-menu> -->
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Course Description </label>
+        <input
+          id="description"
+          name="description"
+          type="text"
+          formControlName="description"
+          placeholder="Lorem Ipsum..."
+          [class.error]="isFieldInvalid('description')"
+          required
+        />
+        <div *ngIf="isFieldInvalid('description')" class="error">
+          Description is required.
         </div>
       </div>
 

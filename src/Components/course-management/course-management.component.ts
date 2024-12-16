@@ -3,6 +3,7 @@ import { CourseCardComponent } from '../course-card/course-card.component';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { CourseService } from '../../app/course.service';
+import { AuthService } from '../../app/auth.service';
 
 @Component({
   selector: 'app-course-management',
@@ -13,12 +14,16 @@ import { CourseService } from '../../app/course.service';
 })
 export class CourseMaterialComponent {
   courses: any[] = [];
-  constructor(private router: Router, private courseService: CourseService) {
-    this.courseService.getAllCourses(); 
-    this.courseService.courses$.subscribe((courses) => {
+  constructor(
+    private router: Router,
+    private courseService: CourseService,
+    private auth: AuthService
+  ) {
+    const instructorId = auth.userId;
+    this.courseService.getCourseById(instructorId);
+    this.courseService.instructorCourse$.subscribe((courses) => {
       this.courses = courses;
     });
-    console.log(this.courses);
   }
 
   editCourse(course: any) {

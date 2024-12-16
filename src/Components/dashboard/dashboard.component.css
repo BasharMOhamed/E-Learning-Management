@@ -37,6 +37,13 @@ select {
   width: 80%;
 }
 
+.no-courses {
+  text-align: center;
+  margin-top: 10%;
+  font-size: 24px;
+  color: #ccc;
+}
+
 .progress-row {
   display: flex;
   align-items: center;

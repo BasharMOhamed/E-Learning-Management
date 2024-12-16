@@ -8,7 +8,15 @@ import {
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { getDatabase, ref, child, push, update } from '@angular/fire/database';
+import {
+  getDatabase,
+  ref,
+  child,
+  push,
+  update,
+  set,
+  get,
+} from '@angular/fire/database';
 
 @Component({
   selector: 'app-assessment-form',
@@ -21,6 +29,7 @@ export class AssessmentFormComponent implements OnInit {
   dbRef = ref(getDatabase());
   assessmentForm: FormGroup;
   courseId: any;
+  students: any[] = [];
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -54,7 +63,7 @@ export class AssessmentFormComponent implements OnInit {
       material,
       materialDescription,
       assessment,
-      assessementDescription,
+      assessmentDescription,
       endDate,
     } = this.assessmentForm.value;
     const newMaterialKey = push(
@@ -62,21 +71,68 @@ export class AssessmentFormComponent implements OnInit {
     ).key;
     const updates: { [key: string]: any } = {};
     if (assessment.length != 0) {
-      updates[
-        '/courses/' + this.courseId + '/' + materialType + '/' + newMaterialKey
-      ] = {
+      const newAssignmentKey = push(
+        child(this.dbRef, `courses/${this.courseId}/${materialType}`)
+      ).key;
+      console.log(assessmentDescription);
+      updates[`/courses/ ${this.courseId}/Assignments/${newAssignmentKey}`] = {
         title: assessment,
-        desription: assessementDescription,
+        description: assessmentDescription,
         deadLine: endDate,
       };
-    }
-    updates[
-      '/courses/' + this.courseId + '/' + materialType + '/' + newMaterialKey
-    ] = {
-      title: material,
-      desription: materialDescription,
-    };
+      update(this.dbRef, updates);
+      //Get all students enrolled in this course
+      get(child(this.dbRef, '/users')).then((snapshot) => {
+        if (snapshot.exists()) {
+          Object.keys(snapshot.val()).forEach((key) => {
+            if (snapshot.val()[key].role == 'student') {
+              Object.entries(snapshot.val()[key].Courses || {}).map(
+                ([courseId, courseData]: [string, any]) => {
+                  if (courseId == this.courseId) {
+                    this.students.push({ id: key });
+                  }
+                }
+              );
+            }
+          });
 
+          for (let i = 0; i < this.students.length; i++) {
+            set(
+              child(
+                this.dbRef,
+                `/users/${this.students[i].id}/Courses/${this.courseId}/Materials/${newAssignmentKey}`
+              ),
+              {
+                title: assessment,
+                description: assessmentDescription,
+                deadLine: endDate,
+                solved: false,
+              }
+            );
+          }
+        } else {
+          console.log('none');
+        }
+      });
+    }
+    for (let i = 0; i < this.students.length; i++) {
+      set(
+        child(
+          this.dbRef,
+          `/users/${this.students[i].id}/Courses/${this.courseId}/Materials/${newMaterialKey}`
+        ),
+        {
+          title: material,
+          description: materialDescription,
+          done: false,
+        }
+      );
+    }
+
+    updates[`/courses/ ${this.courseId}/${materialType}/${newMaterialKey}`] = {
+      title: material,
+      description: materialDescription,
+    };
     update(this.dbRef, updates);
   }
 
