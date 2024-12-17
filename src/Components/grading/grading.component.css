@@ -1,27 +1,20 @@
-/* General styles */
-/* grading-form.component.css */
-
-/* Center the form on the page */
-
-/* Center the form on the page using Flexbox */
 .form-container {
   padding: 20px;
-  background-color: white; /* Light grey background */
+  background-color: white;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;
-  flex-direction: column; /* Stack items vertically */
+  flex-direction: column;
   gap: 2%;
-  margin: auto; /* Reduce margin for smaller screens */
+  margin: auto;
   width: 92%;
-  height: 90%; /* Center items horizontally */
+  height: 90%;
 }
 
-/* Style the form elements */
 .form-group {
-  display: flex; /* Use Flexbox for label and input alignment */
-  flex-direction: column; /* Stack label and input vertically */
-  width: 100%; /* Full width of the container */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   margin-bottom: 15px;
 }
 
@@ -32,14 +25,14 @@ label {
 
 input,
 select {
-  width: 90%; /* Slight margin for a balanced layout */
+  width: 90%;
   padding: 6px;
   font-size: 16px;
   border: 1px solid #ced4da;
   border-radius: 4px;
   outline: none;
   transition: border-color 0.3s;
-  align-self: center; /* Center the input within the form group */
+  align-self: center;
 }
 
 input:focus {
@@ -54,8 +47,8 @@ form {
 }
 
 .submit-button {
-  align-self: center; /* Center the button */
-  width: 20%; /* Slight margin for alignment */
+  align-self: center;
+  width: 24%;
   padding: 10px;
   background-color: #49bbbd;
   color: white;
@@ -82,17 +75,17 @@ form {
 }
 
 .toast {
-  display: flex; /* Use Flexbox for toast layout */
-  justify-content: space-between; /* Space out elements in the toast */
-  align-items: center; /* Vertically align elements */
-  background-color: #f1f1f1; /* Change background color */
-  color: #333; /* Change text color */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f1f1f1;
+  color: #333;
   border-radius: 5px;
   padding: 10px;
   font-size: 14px;
 }
 
 .feedback {
-  font-size: 12px; /* Reduce font size for smaller screens */
-  padding: 8px; /* Adjust padding for smaller screens */
+  font-size: 12px;
+  padding: 8px;
 }

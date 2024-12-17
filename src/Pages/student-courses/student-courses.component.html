@@ -10,10 +10,10 @@
   </div>
 
   <h2>My Courses</h2>
+  <p class="no-courses" *ngIf="filteredCourses.length == 0">
+    No Courses Assigned Yet!
+  </p>
   <div class="courses-container">
-    <p class="no-courses" *ngIf="courses.length == 0">
-      No Courses Assigned Yet!
-    </p>
     <span *ngFor="let course of filteredCourses">
       <a [routerLink]="['/courseDetails', course.ID]">
         <app-course-card

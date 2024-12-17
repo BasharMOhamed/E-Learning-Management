@@ -48,9 +48,13 @@ export class SignupComponent {
       try {
         console.log(userRole);
 
-        this.authService.register(username, email, ssn, password, userRole);
-        form.reset();
-        this.toastr.success('Registration successful!', 'Success');
+        this.authService
+          .register(username, email, ssn, password, userRole)
+          .subscribe(() => {
+            // this.toastr.success('Registration successful', 'Success');
+            form.reset();
+          });
+
         this.router.navigateByUrl('auth');
       } catch (e) {
         console.log(e);

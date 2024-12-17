@@ -73,19 +73,42 @@ export class AuthService {
       this.firebaseAuth,
       email,
       password
-    ).then((response) => {
-      updateProfile(response.user, { displayName: username });
-      const db = getDatabase();
-      const userId = response.user.uid;
-      set(ref(db, `users/${userId}`), {
-        username: username,
-        email: email,
-        ssn: ssn,
-        role: role,
-        status: 'pending',
-        level: 1,
+    )
+      .then((response) => {
+        updateProfile(response.user, { displayName: username });
+        const db = getDatabase();
+        const userId = response.user.uid;
+        set(ref(db, `users/${userId}`), {
+          username: username,
+          email: email,
+          ssn: ssn,
+          role: role,
+          status: 'pending',
+          level: 1,
+        });
+        this.toastr.success('Registration successful!', 'Success');
+      })
+      .catch((e) => {
+        console.log(e);
+        if (e.code === 'auth/email-already-in-use') {
+          this.toastr.error(
+            'The email is already registered. Try another email.',
+            'Registration Error'
+          );
+        } else if (e.code === 'auth/invalid-email') {
+          this.toastr.error(
+            'The email provided is invalid.',
+            'Registration Error'
+          );
+        } else if (e.code === 'auth/weak-password') {
+          this.toastr.error(
+            'The password is too weak. Use a stronger password.',
+            'Registration Error'
+          );
+        } else {
+          this.toastr.error('Something went wrong. Please try again.', 'Error');
+        }
       });
-    });
 
     return from(promise);
   }

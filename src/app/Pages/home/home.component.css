@@ -29,6 +29,13 @@
   align-items: start;
 }
 
+.no-courses {
+  text-align: center;
+  margin: 4% 0;
+  font-size: 24px;
+  color: #ccc;
+}
+
 .course-info {
   flex: 1;
 }

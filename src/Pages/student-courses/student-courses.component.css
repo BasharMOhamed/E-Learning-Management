@@ -47,7 +47,7 @@
 .courses-container {
   /* display: grid;
   grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); */
-  gap: 10px;
+  gap: 9px;
   margin-top: 2%;
   display: flex;
   flex-wrap: wrap;

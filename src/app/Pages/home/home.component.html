@@ -4,6 +4,9 @@
       <h2>Progress Learning</h2>
       <h2>{{ notCompleted.length }} Courses</h2>
     </div>
+    <p class="no-courses" *ngIf="notCompleted.length == 0">
+      No Courses In Progress!
+    </p>
     <div *ngFor="let course of notCompleted">
       <div (click)="navigateToCourse(course.ID)" class="course-progress">
         <img src="plan-your-online-course.jpg" alt="Course Icon" />
@@ -38,6 +41,7 @@
     <h2>{{ Completed.length }} Courses</h2>
   </div>
 
+  <p class="no-courses" *ngIf="Completed.length == 0">No Courses Completed!</p>
   <div *ngFor="let course of Completed">
     <div class="course-progress completed">
       <img src="plan-your-online-course.jpg" alt="Course Icon" />

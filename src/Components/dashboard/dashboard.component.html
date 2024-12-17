@@ -11,6 +11,9 @@
   <div class="container">
     <!-- Students Progress Section -->
     <div class="students-progress">
+      <p class="no-courses" *ngIf="filteredStudents.length == 0">
+        No Students Assigned Yet!
+      </p>
       <ng-container *ngFor="let student of filteredStudents">
         <ng-container *ngIf="student.courses.length >= 1">
           <ng-container *ngFor="let course of student.courses">

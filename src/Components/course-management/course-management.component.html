@@ -1,4 +1,5 @@
 <div class="course-management">
+  <p class="no-courses" *ngIf="courses.length == 0">No Courses Assigned Yet!</p>
   <div *ngFor="let course of courses">
     <app-course-card
       [title]="course.name"

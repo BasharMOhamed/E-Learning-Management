@@ -101,6 +101,13 @@ select {
   font-size: 24px;
 }
 
+.no-courses {
+  text-align: center;
+  margin-top: 10%;
+  font-size: 24px;
+  color: #ccc;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .header {

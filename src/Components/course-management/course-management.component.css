@@ -1,8 +1,13 @@
 .course-management {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    justify-content: center;
-  }
-  
-  
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+.no-courses {
+  text-align: center;
+  margin-top: 10%;
+  font-size: 24px;
+  color: #ccc;
+}
