@@ -66,7 +66,8 @@ export class AuthService {
     username: string,
     email: string,
     ssn: string,
-    password: string
+    password: string,
+    role: String
   ): Observable<void> {
     const promise = createUserWithEmailAndPassword(
       this.firebaseAuth,
@@ -80,7 +81,7 @@ export class AuthService {
         username: username,
         email: email,
         ssn: ssn,
-        role: 'student',
+        role: role,
         status: 'pending',
         level: 1,
       });

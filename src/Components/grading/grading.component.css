@@ -30,7 +30,8 @@ label {
   margin-bottom: 5px;
 }
 
-input {
+input,
+select {
   width: 90%; /* Slight margin for a balanced layout */
   padding: 6px;
   font-size: 16px;

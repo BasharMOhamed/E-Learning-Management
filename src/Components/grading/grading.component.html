@@ -27,25 +27,38 @@
       </div>
       <div class="form-group">
         <label for="courseID">Course Name</label>
-        <input
+        <select name="courseName" id="courseId" [(ngModel)]="courseName">
+          <option value="">Select Course</option>
+          <option *ngFor="let course of courses" [value]="course.name">
+            {{ course.name }}
+          </option>
+        </select>
+        <!-- <input
           id="courseName"
           type="text"
           [(ngModel)]="courseName"
           name="courseName"
           placeholder="course**"
           required
-        />
+        /> -->
       </div>
       <div class="form-group">
         <label for="assessment">Assessment</label>
-        <input
+        <select name="assessment" id="assessment" [(ngModel)]="assessment">
+          <option value="Midterm">Midterm</option>
+          <option value="Assignemnt">Assignemnt</option>
+          <option value="Quiz">Quiz</option>
+          <option value="Final">Final</option>
+          <option value="Practical">Practical</option>
+        </select>
+        <!-- <input
           id="assessment"
           type="text"
           [(ngModel)]="assessment"
           name="assessment"
           placeholder="MidTerm"
           required
-        />
+        /> -->
       </div>
       <div class="form-group">
         <label for="grade">Grade</label>

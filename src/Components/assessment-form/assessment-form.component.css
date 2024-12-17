@@ -17,16 +17,33 @@
   overflow: hidden;
 }
 
+#selectedMaterial {
+  margin: 20px 0px 0px 220px;
+  width: 31%;
+  height: 10%;
+  padding: 7px;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+#materialType {
+  height: 10%;
+  padding: 7px;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
 .card-header {
-  background-color: #f8f9fa;
+  background-color: #4981bd;
+  color: white;
   text-align: center;
-  padding: 5px;
+  padding: 10px;
   font-size: 1.5rem;
   font-weight: bold;
 }
 
 .card-body {
-  padding: 20px;
+  padding: 5px 20px 20px 20px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -79,7 +96,7 @@ button {
   border: none;
   margin-top: 15px;
   border-radius: 50px;
-  background-color: #49bbbd;
+  background-color: #4981bd;
   color: white;
   font-size: 1rem;
   cursor: pointer;
@@ -96,7 +113,7 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #49bbbd;
 }
 .toast {
   display: flex; /* Use Flexbox for toast layout */

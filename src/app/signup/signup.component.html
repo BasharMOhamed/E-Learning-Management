@@ -8,6 +8,14 @@
       <a class="active">Register</a>
     </div>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
+      <div class="roleLabel">
+        <label for="role">Choose Your Role</label>
+        <select name="role" id="role" formControlName="userRole">
+          <option value="" disabled selected hidden>Select Role</option>
+          <option value="instructor">Instructor</option>
+          <option value="student">Student</option>
+        </select>
+      </div>
       <div class="input-container">
         <label for="username">Username</label>
         <input

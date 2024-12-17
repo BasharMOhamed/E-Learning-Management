@@ -113,6 +113,8 @@
 .material-icons {
   color: #4981bd;
   font-size: 45px;
+  margin-left: 2%;
+  width: 50px;
   margin-right: 2%;
 }
 

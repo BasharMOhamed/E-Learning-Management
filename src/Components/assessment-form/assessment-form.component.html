@@ -1,10 +1,22 @@
 <div class="container">
   <div class="card">
     <div class="card-header">
-      <h4>Human Computer Interaction</h4>
+      <h4>{{ course.name }}</h4>
     </div>
+    <select
+      name="selectedMaterial"
+      id="selectedMaterial"
+      [(ngModel)]="selectedMaterial"
+    >
+      <option value="Assignments">Assignments</option>
+      <option value="Materials">Materials</option>
+    </select>
     <div class="card-body">
-      <form [formGroup]="assessmentForm" (ngSubmit)="onSubmit()">
+      <form
+        [formGroup]="assessmentForm"
+        (ngSubmit)="submitAssignments()"
+        *ngIf="selectedMaterial == 'Assignments'"
+      >
         <div class="form-group">
           <label for="assessment">Assessment</label>
           <input
@@ -103,7 +115,15 @@
             </div>
           </div>
         </div>
-
+        <div class="button">
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+      <form
+        *ngIf="selectedMaterial == 'Materials'"
+        [formGroup]="materialsForm"
+        (ngSubmit)="submitMaterials()"
+      >
         <div class="form-group">
           <label for="material">Material</label>
           <input
@@ -115,8 +135,8 @@
           />
           <div
             *ngIf="
-              assessmentForm.get('material')?.invalid &&
-              assessmentForm.get('material')?.touched
+              materialsForm.get('material')?.invalid &&
+              materialsForm.get('material')?.touched
             "
             class="error-message"
           >
@@ -126,17 +146,20 @@
 
         <div class="form-group">
           <label for="materialType">Material Type</label>
-          <input
-            type="text"
+          <select
+            name="materialType"
             id="materialType"
             class="form-control"
             formControlName="materialType"
-            placeholder="Enter Material"
-          />
+          >
+            <option value="Lectures">Lectures</option>
+            <option value="MultiMedia">MultiMedia</option>
+            <option value="Readings">Readings</option>
+          </select>
           <div
             *ngIf="
-              assessmentForm.get('materialType')?.invalid &&
-              assessmentForm.get('materialType')?.touched
+              materialsForm.get('materialType')?.invalid &&
+              materialsForm.get('materialType')?.touched
             "
             class="error-message"
           >
@@ -155,8 +178,8 @@
           />
           <div
             *ngIf="
-              assessmentForm.get('materialDescription')?.invalid &&
-              assessmentForm.get('materialDescription')?.touched
+              materialsForm.get('materialDescription')?.invalid &&
+              materialsForm.get('materialDescription')?.touched
             "
             class="error-message"
           >
@@ -175,8 +198,8 @@
           />
           <div
             *ngIf="
-              assessmentForm.get('materialFile')?.invalid &&
-              assessmentForm.get('materialFile')?.touched
+              materialsForm.get('materialFile')?.invalid &&
+              materialsForm.get('materialFile')?.touched
             "
             class="error-message"
           >

@@ -1,5 +1,5 @@
 <div class="container">
-  <p class="nav-details">My Courses > {{ courseName }}</p>
+  <p class="nav-details">My Courses > {{ course.name }}</p>
   <ul class="filtering-list">
     <li
       (click)="filter('Lecture')"
@@ -95,6 +95,7 @@
               height: 70px;
               right: 0px;
             "
+            [hidden]="assignment.solved"
           />
         </button>
         <i class="material-icons" *ngIf="assignment.solved"

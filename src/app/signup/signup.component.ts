@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
+  FormsModule,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
@@ -15,7 +16,7 @@ import { Router, RouterModule } from '@angular/router';
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, RouterModule],
+  imports: [ReactiveFormsModule, CommonModule, RouterModule, FormsModule],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.css',
 })
@@ -23,6 +24,7 @@ export class SignupComponent {
   loginForm!: FormGroup;
   authService = inject(AuthService);
   toastr = inject(ToastrService);
+
   constructor(private fb: FormBuilder, private router: Router) {}
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -37,13 +39,16 @@ export class SignupComponent {
         ],
       ],
       password: ['', [Validators.required, Validators.minLength(6)]],
+      userRole: ['student', Validators.required],
     });
   }
   async onSubmit(form: FormGroup) {
     if (form.valid) {
-      const { username, email, ssn, password } = form.value;
+      const { username, email, ssn, password, userRole } = form.value;
       try {
-        this.authService.register(username, email, ssn, password);
+        console.log(userRole);
+
+        this.authService.register(username, email, ssn, password, userRole);
         form.reset();
         this.toastr.success('Registration successful!', 'Success');
         this.router.navigateByUrl('auth');
