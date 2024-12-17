@@ -73,7 +73,7 @@ export class CourseService {
       id = id.trim();
       console.log('editing ' + course + ' ' + id);
       remove(child(this.dbRef, `users/${instructorId}/Courses/${id}`));
-      set(child(this.dbRef, `courses/${id}`), course);
+      set(child(this.dbRef, `courses/ ${id}`), course);
       set(child(this.dbRef, `users/${instructorId}/Courses/${id}`), course);
     } else {
       console.log('adding ' + course);

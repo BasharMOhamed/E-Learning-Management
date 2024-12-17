@@ -13,17 +13,19 @@
   </div>
   <div class="grades-container">
     <ng-container *ngFor="let grade of filteredGrades">
-      <div class="grade">
-        <p class="course-title">{{ grade.name }}</p>
-        <div class="results" *ngFor="let value of grade.grades | keyvalue">
-          <ul class="quizes">
-            <li>{{ value.key }}:</li>
-          </ul>
-          <ul class="numbers">
-            <li>{{ value.value }}</li>
-          </ul>
+      <ng-container *ngIf="grade.grades">
+        <div class="grade">
+          <p class="course-title">{{ grade.name }}</p>
+          <div class="results" *ngFor="let value of grade.grades | keyvalue">
+            <ul class="quizes">
+              <li>{{ value.key }}:</li>
+            </ul>
+            <ul class="numbers">
+              <li>{{ value.value }}</li>
+            </ul>
+          </div>
         </div>
-      </div>
+      </ng-container>
     </ng-container>
   </div>
 </div>

@@ -140,7 +140,7 @@ export class CourseDetailsComponent implements OnInit {
       .catch((error) => console.log(error));
   }
 
-  uploadProgress() {
+  async uploadProgress() {
     const userId = this.auth.userId;
     const updates: { [key: string]: any } = {};
     const newProgressValue = this.course.progress + this.singleProgressValue;
@@ -149,22 +149,23 @@ export class CourseDetailsComponent implements OnInit {
     console.log(userId);
     console.log(this.courseId);
 
-    if (newProgressValue < 100) {
+    if (newProgressValue <= 100) {
       (updates[`/users/${userId}/Courses/${this.courseId}/progress`] =
         newProgressValue),
-        update(this.dbRef, updates);
+        await update(this.dbRef, updates);
     }
   }
 
-  uploadSolved(assignmentID: String) {
+  async uploadSolved(assignmentID: String) {
     const updates: { [key: string]: any } = {};
     (updates[`courses/${this.courseId}/Assignments/${assignmentID}/solved`] =
       true),
-      update(this.dbRef, updates);
+      await update(this.dbRef, updates);
   }
 
   solve(assignment: any) {
     this.toastr.success('Assignment Solved Successfully!', 'Success');
+    console.log(assignment, assignment);
     this.assignments = this.assignments.map((assi) => {
       if (assi == assignment) {
         assi.solved = true;

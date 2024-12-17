@@ -167,7 +167,8 @@ export class AssessmentFormComponent implements OnInit {
   }
 
   submitMaterials() {
-    if (this.assessmentForm.valid) {
+    // console.log(this.assessmentForm.)
+    if (this.materialsForm.valid) {
       this.toastr.success('Form submitted successfully', 'success');
       this.uploadMaterial();
       this.navigateToCourses();
