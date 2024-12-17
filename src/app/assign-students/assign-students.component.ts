@@ -87,19 +87,30 @@ export class AssignStudentsComponent implements OnInit {
         (s) => s.name === studentName && s.level == studentLevel
       );
       if (studentId) {
-        this.toastr.success('Form submitted successfully!');
         console.log('courseId ' + course);
         console.log('studentId ' + studentId);
-        set(ref(getDatabase(), `/users/${studentId.id}/Courses/${course.id}`), {
-          academicYear: course.academicYear,
-          ID: course.id,
-          name: course.name,
-          hours: course.hours,
-          instructor: course.instructor,
-          description: course.description,
-          progress: 0,
-        }).then(() => {
-          this.route.navigate(['course-table']);
+        get(
+          child(this.dbRef, `/users/${studentId.id}/Courses/${course.id}`)
+        ).then((snapshot) => {
+          if (!snapshot.exists()) {
+            set(
+              ref(getDatabase(), `/users/${studentId.id}/Courses/${course.id}`),
+              {
+                academicYear: course.academicYear,
+                ID: course.id,
+                name: course.name,
+                hours: course.hours,
+                instructor: course.instructor,
+                description: course.description,
+                progress: 0,
+              }
+            ).then(() => {
+              this.toastr.success('Form submitted successfully!');
+              this.route.navigate(['course-table']);
+            });
+          } else {
+            this.toastr.error('This student already enrolled in this course');
+          }
         });
       } else {
         console.log('here');

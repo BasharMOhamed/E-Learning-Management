@@ -70,16 +70,16 @@ export class CourseService {
 
   addCourse(course: any, instructorId: String, id?: string) {
     if (id) {
-      id = id.trim();
-      console.log('editing ' + course + ' ' + id);
+      // id = id.trim();
+      // console.log('editing ' + course + ' ' + id);
       remove(child(this.dbRef, `users/${instructorId}/Courses/${id}`));
-      set(child(this.dbRef, `courses/ ${id}`), course);
+      set(child(this.dbRef, `courses/${id}`), course);
       set(child(this.dbRef, `users/${instructorId}/Courses/${id}`), course);
     } else {
       console.log('adding ' + course);
 
       const newCourseKey = push(child(this.dbRef, `courses`)).key;
-      set(child(this.dbRef, `courses/ ${newCourseKey}`), course);
+      set(child(this.dbRef, `courses/${newCourseKey}`), course);
       set(
         child(this.dbRef, `users/${instructorId}/Courses/${newCourseKey}`),
         course

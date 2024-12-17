@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
@@ -27,7 +27,7 @@ interface Course {
   templateUrl: './grading.component.html',
   styleUrls: ['./grading.component.css'],
 })
-export class GradingFormComponent {
+export class GradingFormComponent implements OnInit {
   database = getDatabase();
   studentName = '';
   courseName = '';
@@ -41,7 +41,9 @@ export class GradingFormComponent {
     private auth: AuthService,
     private router: Router,
     private courseServ: CourseService
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.fetchAllStudents();
     this.fetchCourses();
   }
@@ -73,6 +75,7 @@ export class GradingFormComponent {
       if (snapshot.exists()) {
         Object.keys(snapshot.val()).forEach((key) => {
           if (snapshot.val()[key].role == 'student') {
+            console.log(snapshot.val()[key]);
             this.users.push({
               id: key,
               username: snapshot.val()[key].username,
@@ -95,7 +98,7 @@ export class GradingFormComponent {
     const student = this.users.find(
       (user) => user.username == this.studentName
     );
-    console.log(student);
+    console.log(student, this.users);
 
     const subject = this.courses.find(
       (course) => course.name == this.courseName
@@ -111,7 +114,7 @@ export class GradingFormComponent {
           ref(this.database),
           `/users/${
             student.id
-          }/Courses/ ${subject}/grades/${this.assessment.trim()}`
+          }/Courses/${subject}/grades/${this.assessment.trim()}`
         ),
         this.grade
       )

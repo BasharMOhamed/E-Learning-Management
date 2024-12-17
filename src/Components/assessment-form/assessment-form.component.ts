@@ -69,7 +69,7 @@ export class AssessmentFormComponent implements OnInit {
   getCourseDetails() {
     console.log(this.courseId);
 
-    get(child(this.dbRef, `/courses/ ${this.courseId}`)).then((snapshot) => {
+    get(child(this.dbRef, `/courses/${this.courseId}`)).then((snapshot) => {
       if (snapshot.exists()) {
         this.course = snapshot.val();
         console.log(this.course);
@@ -88,7 +88,7 @@ export class AssessmentFormComponent implements OnInit {
     ).key;
     const updates: { [key: string]: any } = {};
 
-    updates[`/courses/ ${this.courseId}/${materialType}/${newMaterialKey}`] = {
+    updates[`/courses/${this.courseId}/${materialType}/${newMaterialKey}`] = {
       title: material,
       description: materialDescription,
     };
@@ -145,8 +145,8 @@ export class AssessmentFormComponent implements OnInit {
     const newAssignmentKey = push(
       child(this.dbRef, `courses/${this.courseId}/Assignments`)
     ).key;
-    console.log(assessmentDescription);
-    updates[`/courses/ ${this.courseId}/Assignments/${newAssignmentKey}`] = {
+    console.log(newAssignmentKey, this.courseId);
+    updates[`/courses/${this.courseId}/Assignments/${newAssignmentKey}`] = {
       title: assessment,
       description: assessmentDescription,
       deadLine: endDate,
