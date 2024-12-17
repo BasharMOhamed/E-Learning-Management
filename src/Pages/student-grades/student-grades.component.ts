@@ -23,7 +23,7 @@ export class StudentGradesComponent implements OnInit {
     get(child(this.dbRef, `/users/${userId}/Courses`))
       .then((snapshot) => {
         if (snapshot.exists()) {
-          console.log(snapshot.val()[1].name);
+          console.log(snapshot.val());
           this.grades = Object.keys(snapshot.val()).map((key) => ({
             id: key,
             grades: snapshot.val()[key].grades,

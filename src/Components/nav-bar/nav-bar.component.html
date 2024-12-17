@@ -16,7 +16,7 @@
         alt="profile"
         class="userImg"
       />
-      <h6 class="userName">username</h6>
+      <h6 class="userName">{{ username }}</h6>
       <button
         type="button"
         class="expand_more_btn"
@@ -32,11 +32,9 @@
       </button>
     </div>
   </div>
+  <ul *ngIf="expandMore" class="expand_menu">
+    <a (click)="logOut()"><li>Logout</li></a>
+  </ul>
 </div>
-<ul *ngIf="expandMore" class="expand_menu">
-  <li><a (click)="logOut()">Logout</a></li>
-</ul>
 
-<ul *ngIf="showMenu" class="responsive_menu">
-  <!-- <ng-content></ng-content> -->
-</ul>
+<ul *ngIf="showMenu" class="responsive_menu"></ul>

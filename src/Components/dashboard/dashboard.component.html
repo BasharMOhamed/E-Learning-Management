@@ -11,30 +11,35 @@
   <div class="container">
     <!-- Students Progress Section -->
     <div class="students-progress">
-      <p class="no-courses" *ngIf="studentsCount == 0">
-        No Students assigned to courses yet!
-      </p>
       <ng-container *ngFor="let student of filteredStudents">
         <ng-container *ngIf="student.courses.length >= 1">
-          <div class="progress-row" *ngFor="let course of student.courses">
-            <div class="progress-icon">
-              <img
-                src="assets/plan-your-online-course.png"
-                alt="Student Icon"
-              />
-            </div>
-            <div class="progress-info">
-              <h4>{{ student.id }}</h4>
-              <p>{{ course.progress }}% Completed</p>
-              <div class="progress-bar">
-                <div
-                  class="progress"
-                  [style.width.%]="course.progress"
-                  [class.completed]="course.progress === 100"
-                ></div>
+          <ng-container *ngFor="let course of student.courses">
+            <div
+              class="progress-row"
+              *ngIf="
+                course.instructor.includes(this.auth.username) &&
+                course.name === selectedCourse
+              "
+            >
+              <div class="progress-icon">
+                <img
+                  src="assets/plan-your-online-course.png"
+                  alt="Student Icon"
+                />
+              </div>
+              <div class="progress-info">
+                <h4>{{ student.id }}</h4>
+                <p>{{ course.progress }}% Completed</p>
+                <div class="progress-bar">
+                  <div
+                    class="progress"
+                    [style.width.%]="course.progress"
+                    [class.completed]="course.progress === 100"
+                  ></div>
+                </div>
               </div>
             </div>
-          </div>
+          </ng-container>
         </ng-container>
       </ng-container>
     </div>
@@ -42,7 +47,7 @@
       <!-- Summary Section -->
       <div class="summary">
         <h3>Total Students:</h3>
-        <p>{{ studentsCount }} students</p>
+        <p>{{ filteredStudents.length }} students</p>
       </div>
     </div>
   </div>

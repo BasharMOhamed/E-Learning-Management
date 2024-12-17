@@ -120,4 +120,8 @@ select {
   .progress-icon {
     margin-bottom: 0.5rem;
   }
+
+  .progress-info {
+    width: 100%;
+  }
 }

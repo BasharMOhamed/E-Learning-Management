@@ -27,10 +27,14 @@ export class AuthService {
   userId: String = '';
   private isAuthenticated = new BehaviorSubject<boolean>(false);
   isAuthenticated$: Observable<boolean> = this.isAuthenticated.asObservable();
-  constructor(private router: Router) {}
+  constructor(private router: Router, private toastr: ToastrService) {}
+  username: any;
 
   setUserId(userId: String) {
     this.userId = userId;
+  }
+  setUsername(username: String) {
+    this.username = username;
   }
 
   getUserRole(): String {
@@ -38,12 +42,18 @@ export class AuthService {
       .then((snapshot) => {
         if (snapshot.exists()) {
           const userRole = snapshot.val().role;
-          if (userRole == 'instructor') {
-            this.router.navigate(['Home']);
-          } else if (userRole == 'student') {
-            this.router.navigate(['home']);
-          } else if (userRole == 'admin') {
-            this.router.navigate(['accounts']);
+          const active = snapshot.val().status;
+          if (active == 'Active') {
+            if (userRole == 'instructor') {
+              this.router.navigate(['Home']);
+            } else if (userRole == 'student') {
+              this.router.navigate(['Courses']);
+            } else if (userRole == 'admin') {
+              this.router.navigate(['accounts']);
+            }
+            this.toastr.success('Login Successfully!', 'success');
+          } else {
+            this.toastr.error('Waiting for Admin Activation', 'Failed');
           }
           console.log('role: ' + userRole);
         }

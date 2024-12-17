@@ -1,28 +1,70 @@
 <!-- <app-login></app-login> -->
 <!-- <app-signup></app-signup> -->
 
-<app-nav-bar *ngIf="role">
-  <ul style="list-style: none">
-    <li *ngIf="role == 'instructor'">
-      <a routerLink="/Home" style="padding: 20px">Home</a>
-      <a routerLink="/course-management" style="padding: 20px"
+<app-nav-bar *ngIf="shouldShowNavbar">
+  <!-- <ul style="list-style: none"> -->
+  <ng-container *ngIf="role == 'instructor'">
+    <li>
+      <a routerLink="/Home" style="padding: 20px" routerLinkActive="active"
+        >Home</a
+      >
+    </li>
+    <li>
+      <a
+        routerLink="/course-management"
+        style="padding: 20px"
+        routerLinkActive="active"
         >Courses Management</a
       >
-      <a routerLink="/grading" style="padding: 20px">Grading</a>
     </li>
-    <li *ngIf="role == 'student'">
-      <a routerLink="/home" style="padding: 20px">Home</a>
-      <a routerLink="/Courses" style="padding: 20px">My Courses</a>
-      <a routerLink="/Grades" style="padding: 20px">Grades</a>
+    <li>
+      <a routerLink="/grading" style="padding: 20px" routerLinkActive="active"
+        >Grading</a
+      >
     </li>
-    <li *ngIf="role == 'admin'">
-      <a routerLink="/accounts" style="padding: 20px">Manage Accounts</a>
-      <a routerLink="/course-table" style="padding: 20px">Courses Management</a>
-      <a routerLink="/assign-students" style="padding: 20px"
+  </ng-container>
+  <ng-container *ngIf="role == 'student'">
+    <li>
+      <a routerLink="/home" style="padding: 20px" routerLinkActive="active"
+        >Home</a
+      >
+    </li>
+
+    <li>
+      <a routerLink="/Courses" style="padding: 20px" routerLinkActive="active"
+        >My Courses</a
+      >
+    </li>
+    <li>
+      <a routerLink="/Grades" style="padding: 20px" routerLinkActive="active"
+        >Grades</a
+      >
+    </li>
+  </ng-container>
+  <ng-container *ngIf="role == 'admin'">
+    <li>
+      <a routerLink="/accounts" style="padding: 20px" routerLinkActive="active"
+        >Manage Accounts</a
+      >
+    </li>
+    <li>
+      <a
+        routerLink="/course-table"
+        style="padding: 20px"
+        routerLinkActive="active"
+        >Courses Management</a
+      >
+    </li>
+    <li>
+      <a
+        routerLink="/assign-students"
+        style="padding: 20px"
+        routerLinkActive="active"
         >Students Assigning</a
       >
     </li>
-  </ul>
+  </ng-container>
+  <!-- </ul> -->
 </app-nav-bar>
 
 <!-- <ul class="links">

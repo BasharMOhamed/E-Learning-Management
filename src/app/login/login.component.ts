@@ -48,9 +48,11 @@ export class LoginComponent {
           .login(email, password)
           .then(() => {
             this.auth.setUserId(this.auth.firebaseAuth.currentUser?.uid ?? '');
+            this.auth.setUsername(
+              this.auth.firebaseAuth.currentUser?.displayName?.split(' ')[0]!
+            );
             this.auth.getUserRole();
-            this.router.navigateByUrl('/');
-            this.toastr.success('Login Successfully!', 'success');
+            // this.router.navigateByUrl('/');
           })
           .catch((e) => {
             this.toastr.error('Invalid credentials');

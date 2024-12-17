@@ -8,6 +8,20 @@ a:link {
   text-decoration: none;
 }
 
-.active-class {
+.active {
   opacity: 0.5;
+}
+@media (max-width: 600px) {
+  a {
+    width: 100%;
+  }
+  li {
+    text-align: center;
+    width: 100%;
+    padding: 30px 0;
+  }
+  li:hover {
+    background-color: aliceblue;
+    cursor: pointer;
+  }
 }

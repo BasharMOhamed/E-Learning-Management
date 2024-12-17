@@ -46,7 +46,7 @@ export class StudentCoursesComponent implements OnInit {
 
   searchCourses(title: String): void {
     this.filteredCourses = this.courses.filter((course) =>
-      course.title.toLowerCase().includes(title.trim().toLowerCase())
+      course.name.toLowerCase().includes(title.trim().toLowerCase())
     );
   }
 

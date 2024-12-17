@@ -68,7 +68,7 @@ export const routes: Routes = [
   { path: '', redirectTo: '/auth', pathMatch: 'full' },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'logout', redirectTo: 'auth' },
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   // { path: 'Dashboard' },
   // { path: 'courses' },
   // { path: 'grades' },
